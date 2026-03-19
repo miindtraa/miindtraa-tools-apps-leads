@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miindtraa Interactive Tools</title>
+  <meta name="description" content="Explore Miindtraa's interactive diagnostic tools, self-assessments, and healing lead magnets." />
+  <style>
+    :root{
+      --bg:#0f1020;
+      --bg2:#17192f;
+      --card:#1d2140;
+      --card2:#232852;
+      --text:#f7f4ef;
+      --muted:#b9b6c7;
+      --gold:#d7b15f;
+      --gold2:#f0c96d;
+      --purple:#7d4bc5;
+      --orange:#e6892e;
+      --border:rgba(255,255,255,.10);
+      --shadow:0 20px 50px rgba(0,0,0,.28);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(125,75,197,.22), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(230,137,46,.16), transparent 25%),
+        linear-gradient(180deg, var(--bg2), var(--bg));
+      min-height:100vh;
+    }
+    .wrap{max-width:1180px;margin:0 auto;padding:32px 20px 60px}
+    .hero{
+      text-align:center;
+      padding:48px 20px 28px;
+    }
+    .brand{
+      display:inline-block;
+      font-size:12px;
+      letter-spacing:3px;
+      text-transform:uppercase;
+      color:var(--gold2);
+      padding:8px 14px;
+      border:1px solid rgba(240,201,109,.24);
+      border-radius:999px;
+      background:rgba(240,201,109,.08);
+      margin-bottom:18px;
+    }
+    h1{
+      font-size:clamp(32px,5vw,56px);
+      line-height:1.05;
+      margin:0 0 14px;
+      font-weight:800;
+    }
+    .hero p{
+      max-width:820px;
+      margin:0 auto;
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.7;
+    }
+    .subline{
+      margin-top:16px;
+      font-size:14px;
+      color:#d8d3e5;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:18px;
+      margin-top:34px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(8px);
+      display:flex;
+      flex-direction:column;
+      min-height:230px;
+    }
+    .icon{
+      width:54px;height:54px;border-radius:16px;
+      display:grid;place-items:center;
+      font-size:25px;
+      margin-bottom:14px;
+      background:linear-gradient(135deg, rgba(215,177,95,.22), rgba(125,75,197,.28));
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .card h2{
+      margin:0 0 8px;
+      font-size:20px;
+      line-height:1.25;
+    }
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.65;
+      flex:1;
+    }
+    .btnrow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .btn{
+      text-decoration:none;
+      border-radius:999px;
+      padding:12px 16px;
+      font-weight:700;
+      font-size:14px;
+      transition:.2s ease;
+      display:inline-block;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,var(--orange),var(--gold2));
+      color:#161616;
+    }
+    .btn-primary:hover{transform:translateY(-2px)}
+    .btn-secondary{
+      color:var(--text);
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .section{
+      margin-top:44px;
+      padding:24px;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--border);
+      border-radius:24px;
+    }
+    .section h3{
+      margin:0 0 10px;
+      font-size:24px;
+    }
+    .section p{
+      margin:0 0 12px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:15px;
+    }
+    .mini{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:14px;
+      margin-top:18px;
+    }
+    .mini-card{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:16px;
+    }
+    .mini-card strong{
+      display:block;
+      margin-bottom:6px;
+      color:var(--gold2);
+    }
+    footer{
+      text-align:center;
+      color:#9f9ab0;
+      font-size:13px;
+      margin-top:34px;
+      line-height:1.7;
+    }
+    @media (max-width:640px){
+      .wrap{padding:20px 14px 40px}
+      .hero{padding:28px 8px 16px}
+      .section{padding:18px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="brand">Miindtraa • Interactive Lead Magnets</div>
+      <h1>Explore Your Healing & Growth Tools</h1>
+      <p>
+        These free interactive tools by Miindtraa are designed to help you gain clarity around your emotional patterns,
+        nervous system, healing blocks, daily regulation, and practitioner growth journey.
+      </p>
+      <div class="subline">Choose the tool that fits where you are right now.</div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <div class="icon">🧠</div>
+        <h2>Neurochakra Block Diagnostic</h2>
+        <p>Discover where your energy, emotion, and subconscious pattern may be stuck with Miindtraa’s signature diagnostic tool.</p>
+        <div class="btnrow">
+          <a class="btn btn-primary" href="miindtraa-neurochakra-diagnostic.html">Open Tool</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">⚡</div>
+        <h2>Nervous System Type Test</h2>
+        <p>Find whether your dominant pattern is fight, flight, freeze, or fawn and understand the survival response shaping your life.</p>
+        <div class="btnrow">
+          <a class="btn btn-primary" href="miindtraa-nervous-system-type-test.html">Open Tool</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">☀️</div>
+        <h2>4-Minute Quantum Morning Protocol</h2>
+        <p>Start your day with a quick guided regulation ritual designed to bring energy, clarity, and emotional steadiness.</p>
+        <div class="btnrow">
+          <a class="btn btn-primary" href="miindtraa-morning-protocol.html">Open Tool</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">🔮</div>
+        <h2>Chakra-Body Symptom Translator</h2>
+        <p>Decode what physical symptoms may be reflecting emotionally and energetically through an easy chakra-based reference tool.</p>
+        <div class="btnrow">
+          <a class="btn btn-primary" href="miindtraa-chakra-symptom-translator.html">Open Tool</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">🏠</div>
+        <h2>Indian Family Wound Map</h2>
+        <p>Explore common inherited emotional patterns and family wounds that may still be influencing your present identity and relationships.</p>
+        <div class="btnrow">
+          <a class="btn btn-primary" href="miindtraa-indian-family-wound-map.html">Open Tool</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">📊</div>
+        <h2>Healer Intelligence Report</h2>
+        <p>A deeper assessment for healers, therapists, and coaches to understand practice health, gaps, strengths, and growth direction.</p>
+        <div class="btnrow">
+          <a class="btn btn-primary" href="miindtraa-healer-intelligence-report.html">Open Tool</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">🧩</div>
+        <h2>Healer’s Modality Gap Audit</h2>
+        <p>Audit your current modalities and identify what may be missing in your healing framework, structure, and client transformation journey.</p>
+        <div class="btnrow">
+          <a class="btn btn-primary" href="miindtraa-modality-gap-audit.html">Open Tool</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <h3>Best way to use these</h3>
+      <p>These tools work beautifully as lead magnets from Instagram DMs, story links, bio links, WhatsApp, and paid ads. You can send people directly to one tool, or send them here first and let them choose their entry point.</p>
+      <div class="mini">
+        <div class="mini-card">
+          <strong>For seekers</strong>
+          Start with the Neurochakra Diagnostic or Nervous System Type Test.
+        </div>
+        <div class="mini-card">
+          <strong>For daily practice</strong>
+          Use the 4-Minute Morning Protocol as a recurring engagement tool.
+        </div>
+        <div class="mini-card">
+          <strong>For practitioner leads</strong>
+          Send the Healer Intelligence Report and Modality Gap Audit.
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © Miindtraa • Emotional, energetic and practitioner growth tools<br>
+      Built for lead generation, self-discovery and healing awareness.
+    </footer>
+  </div>
+</body>
+</html>
