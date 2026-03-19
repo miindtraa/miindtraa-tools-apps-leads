@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4-Minute Quantum Morning Protocol | Miindtraa NQH™</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--font:'Nunito',sans-serif;--bg:#0A0A1A;--card:#161630;--card2:#1E1E40;--border:#2A2A4A;
+--gold:#F5C842;--gold-glow:rgba(245,200,66,.25);--purple:#A78BFA;--orange:#E67E22;
+--phase1:#FF6B6B;--phase2:#4ECDC4;--phase3:#A78BFA;--white:#FFF;--grey:#8888AA}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.15);opacity:1}}
+@keyframes pulse{0%,100%{box-shadow:0 0 20px var(--gold-glow)}50%{box-shadow:0 0 50px var(--gold-glow)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.fu{animation:fadeUp .5s ease forwards;opacity:0}
+
+.screen{display:none;min-height:100vh;min-height:100dvh}.screen.active{display:flex;flex-direction:column}
+
+/* INTRO */
+.intro{justify-content:center;align-items:center;text-align:center;padding:32px 24px;position:relative;
+  background:radial-gradient(ellipse at 50% 30%,rgba(245,200,66,.06),transparent 60%),var(--bg)}
+.intro-wrap{max-width:480px;position:relative;z-index:2}
+.brand{font-size:11px;letter-spacing:4px;color:var(--grey);text-transform:uppercase;margin-bottom:20px}
+.title{font-size:34px;font-weight:800;line-height:1.15;margin-bottom:14px}
+.title em{font-style:normal;color:var(--gold)}
+.sub{font-size:15px;color:var(--grey);line-height:1.65;margin-bottom:28px}
+.phase-preview{display:flex;gap:10px;margin-bottom:32px;justify-content:center}
+.pp{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 12px;text-align:center;flex:1;max-width:140px}
+.pp-time{font-size:22px;font-weight:800;display:block;margin-bottom:2px}
+.pp-name{font-size:11px;font-weight:600;letter-spacing:.5px}
+.btn{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:50px;padding:18px 44px;font-size:17px;font-weight:700;font-family:var(--font);cursor:pointer;transition:all .3s}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#E6B800);color:var(--bg);box-shadow:0 8px 30px var(--gold-glow)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 40px var(--gold-glow)}
+.btn-orange{background:var(--orange);color:#fff;box-shadow:0 4px 16px rgba(230,126,34,.3)}
+.copy{font-size:11px;color:rgba(255,255,255,.2);margin-top:28px;line-height:1.7}
+
+/* PRACTICE */
+.practice{align-items:center;justify-content:center;text-align:center;padding:32px 24px;position:relative}
+.practice-bg{position:absolute;inset:0;pointer-events:none}
+.practice-content{position:relative;z-index:2;max-width:480px;width:100%}
+
+.phase-indicator{display:flex;gap:8px;justify-content:center;margin-bottom:24px}
+.pi{width:60px;height:4px;border-radius:2px;background:var(--border);transition:background .3s}
+.pi.active{background:var(--gold)}
+.pi.done{background:var(--gold);opacity:.4}
+
+.timer-ring{width:200px;height:200px;margin:0 auto 24px;position:relative;display:flex;align-items:center;justify-content:center}
+.timer-ring svg{position:absolute;width:200px;height:200px;transform:rotate(-90deg)}
+.timer-ring circle{fill:none;stroke-width:4;stroke-linecap:round}
+.ring-bg{stroke:var(--border)}
+.ring-fill{stroke:var(--gold);transition:stroke-dashoffset 1s linear}
+.timer-center{text-align:center;position:relative;z-index:2}
+.timer-num{font-size:48px;font-weight:800;font-family:var(--font)}
+.timer-label{font-size:12px;color:var(--grey);letter-spacing:1px;text-transform:uppercase}
+
+.phase-name{font-size:22px;font-weight:800;margin-bottom:8px}
+.instruction{font-size:16px;color:rgba(255,255,255,.7);line-height:1.7;max-width:400px;margin:0 auto 20px;min-height:100px}
+.breath-orb{width:80px;height:80px;border-radius:50%;margin:0 auto 16px;display:none}
+.breath-orb.visible{display:block;animation:breathe 6s ease infinite}
+.breath-label{font-size:14px;color:var(--gold);margin-bottom:16px;display:none;font-weight:600}
+.breath-label.visible{display:block}
+
+.practice-btn{margin-top:12px}
+
+/* DONE */
+.done-screen{justify-content:center;align-items:center;text-align:center;padding:32px 24px;
+  background:radial-gradient(ellipse at 50% 40%,rgba(245,200,66,.08),transparent 50%),var(--bg)}
+.done-wrap{max-width:480px}
+.done-emoji{font-size:64px;margin-bottom:16px;display:block}
+.done-title{font-size:28px;font-weight:800;color:var(--gold);margin-bottom:8px}
+.done-sub{font-size:15px;color:var(--grey);line-height:1.6;margin-bottom:24px}
+.done-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:left;margin-bottom:20px}
+.done-card h4{font-size:14px;font-weight:700;color:var(--gold);margin-bottom:8px}
+.done-card p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.6}
+
+.cta-box{background:linear-gradient(145deg,#4A1D73,var(--bg));border:1px solid rgba(167,139,250,.2);border-radius:18px;padding:24px;text-align:center;margin-bottom:16px}
+.cta-box h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.cta-box p{font-size:13px;color:var(--grey);line-height:1.5;margin-bottom:14px}
+.cta-box a{color:#fff;text-decoration:none}
+.btn-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.btn-sec{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 16px;font-size:13px;font-family:var(--font);font-weight:600;color:var(--purple);cursor:pointer;text-decoration:none;transition:all .2s}
+.footer{text-align:center;padding:16px 0;font-size:11px;color:rgba(255,255,255,.2);line-height:1.7}
+@media(max-width:480px){.title{font-size:28px}.timer-ring{width:160px;height:160px}.timer-ring svg{width:160px;height:160px}.timer-num{font-size:40px}}
+</style>
+</head>
+<body>
+
+<div id="intro" class="screen intro active">
+<div class="intro-wrap fu">
+  <div class="brand">Miindtraa &bull; NQH&trade;</div>
+  <h1 class="title">The 4-Minute<br><em>Quantum Morning Protocol</em></h1>
+  <p class="sub">Align your neural state, chakra energy &amp; daily intention before your feet touch the floor.</p>
+  <div class="phase-preview">
+    <div class="pp"><span class="pp-time" style="color:var(--phase1)">60s</span><span class="pp-name" style="color:var(--phase1)">Neural Anchor</span></div>
+    <div class="pp"><span class="pp-time" style="color:var(--phase2)">90s</span><span class="pp-name" style="color:var(--phase2)">Chakra Scan</span></div>
+    <div class="pp"><span class="pp-time" style="color:var(--phase3)">90s</span><span class="pp-name" style="color:var(--phase3)">Intention Lock</span></div>
+  </div>
+  <button class="btn btn-gold" onclick="startPractice()">Begin Protocol &rarr;</button>
+  <p class="copy">Based on Flow Frequency Tuning&trade; &bull; Technique 1 of 16<br>&copy; Miindtraa Global | Dr. Amaey A. Parekh &amp; Pankaj Nikam</p>
+</div>
+</div>
+
+<div id="practice" class="screen practice">
+<div class="practice-content">
+  <div class="phase-indicator" id="phaseInd"></div>
+  <div class="timer-ring" id="timerRing">
+    <svg viewBox="0 0 200 200"><circle class="ring-bg" cx="100" cy="100" r="90"/><circle class="ring-fill" id="ringFill" cx="100" cy="100" r="90" stroke-dasharray="565.5" stroke-dashoffset="0"/></svg>
+    <div class="timer-center"><div class="timer-num" id="timerNum">60</div><div class="timer-label" id="timerLabel">seconds</div></div>
+  </div>
+  <div class="breath-orb" id="breathOrb"></div>
+  <div class="breath-label" id="breathLabel"></div>
+  <h2 class="phase-name" id="phaseName"></h2>
+  <p class="instruction" id="instruction"></p>
+  <button class="btn btn-gold practice-btn" id="practiceBtn" style="display:none" onclick="nextStep()">Continue &rarr;</button>
+</div>
+</div>
+
+<div id="done" class="screen done-screen">
+<div class="done-wrap fu">
+  <span class="done-emoji">&#10024;</span>
+  <h2 class="done-title">Protocol Complete</h2>
+  <p class="done-sub">You just aligned your neural state, chakra energy, and daily intention in 4 minutes. You\u2019re now operating from Flow Frequency.</p>
+  <div class="done-card">
+    <h4>What Just Happened</h4>
+    <p><strong>Phase 1:</strong> The extended exhale activated your vagus nerve, shifting your nervous system from fight-or-flight to rest-and-create. This is the same principle behind NQH\u2019s Flow Frequency Tuning\u2122.<br><br>
+    <strong>Phase 2:</strong> The chakra scan trained your interoceptive awareness \u2014 your ability to sense your body\u2019s energy state. This is the foundation of all NQH energy work.<br><br>
+    <strong>Phase 3:</strong> Setting intention in Alpha brainwave state bypasses conscious resistance and programmes the subconscious directly. This is fundamentally different from affirmations said in stressed Beta state.</p>
+  </div>
+  <div class="done-card">
+    <h4>This Is Protocol 1 of 16</h4>
+    <p>You just experienced the foundational practice of the NQH system. The full practitioner toolkit includes 16 techniques across 4 pillars: Mind-Brain Synergy, Energetic Alignment, Emotional Mastery, and Manifestation Dynamics. Do this every morning for 7 days and notice the shifts.</p>
+  </div>
+  <div class="cta-box">
+    <h3>Experience the Complete System</h3>
+    <p>The NQH Foundation Masterclass (\u20B996) teaches you all 4 pillars and lets you experience a live energy shift with Dr. Amaey &amp; Pankaj.</p>
+    <a href="https://nqhmasterclass.miindtraa.com" target="_blank"><button class="btn btn-orange">Masterclass \u2014 \u20B996 &rarr;</button></a>
+  </div>
+  <div class="btn-row">
+    <a href="https://instagram.com/miindtraa" target="_blank" class="btn-sec">Follow @miindtraa</a>
+    <button class="btn-sec" onclick="location.reload()">Do It Again</button>
+  </div>
+  <div class="footer">&copy; Miindtraa Global | Dr. Amaey A. Parekh &amp; Pankaj Nikam<br>Neurochakra Quantum Healing\u2122 | www.miindtraa.com</div>
+</div>
+</div>
+
+<script>
+const phases=[
+  {name:"Phase 1: Neural Anchor",clr:"#FF6B6B",dur:60,steps:[
+    {t:12,txt:"Sit upright. Feet on the floor. Close your eyes.\n\nTake a deep breath in through your nose\u2026 4 counts.",breath:true,breathTxt:"Inhale 4 \u2022 Hold 2 \u2022 Exhale 6"},
+    {t:48,txt:"Repeat this breathing pattern.\nInhale 4 counts. Hold 2 counts. Exhale 6 counts.\n\nWith each exhale, imagine tension draining from your body like water.\n\nOn your final exhale, say internally:\n\u201CI am here. I am present. I am ready.\u201D",breath:true,breathTxt:"Inhale 4 \u2022 Hold 2 \u2022 Exhale 6 \u2022 5 rounds"}
+  ]},
+  {name:"Phase 2: Chakra Alignment Scan",clr:"#4ECDC4",dur:90,steps:[
+    {t:13,txt:"Keeping your eyes closed, bring attention to the base of your spine.\n\nVisualise a warm RED light glowing at your Root Chakra.\nBreathe into it. Notice what you feel."},
+    {t:13,txt:"Move upward.\n\nORANGE at your lower abdomen \u2014 Sacral.\nYELLOW at your solar plexus \u2014 Power.\n\nBreathe colour INTO any centre that feels dim or heavy."},
+    {t:13,txt:"GREEN at your heart centre \u2014 Love.\nBLUE at your throat \u2014 Expression.\n\nSpend a few breaths at each. Notice warmth, tingling, or tightness."},
+    {t:13,txt:"INDIGO between your brows \u2014 Clarity.\nVIOLET at the crown of your head \u2014 Connection.\n\nAll 7 colours now glow in a column of light through your body."},
+    {t:38,txt:"Feel the entire column of light \u2014 Root to Crown \u2014 pulsing gently with each breath.\n\nYou are aligned. Your energy field is awake."}
+  ]},
+  {name:"Phase 3: Quantum Intention Lock",clr:"#A78BFA",dur:90,steps:[
+    {t:20,txt:"With your chakra column lit up, ask yourself:\n\n\u201CWhat is the ONE quality I want to embody today?\u201D\n\nConfidence? Peace? Clarity? Joy? Courage?\n\nLet it arise naturally."},
+    {t:30,txt:"Now use the NQH Intention Formula:\n\n\u201CI am [quality] because [new belief] creates [outcome].\u201D\n\nExample: \u201CI am confident because I trust my inner wisdom, and this creates clarity in every decision today.\u201D\n\nRepeat your intention 3 times."},
+    {t:40,txt:"Feel the quality growing stronger in your Solar Plexus \u2014 your power centre.\n\nWith each repetition, feel it anchoring deeper.\n\nTake one final deep breath\u2026\n\nOpen your eyes.\n\nBegin your day from THIS state."}
+  ]}
+];
+
+let currentPhase=0,currentStep=0,timer=null,timeLeft=0,totalPhaseTime=0;
+
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+
+function startPractice(){
+  currentPhase=0;currentStep=0;
+  go('practice');
+  runPhase();
+}
+
+function runPhase(){
+  const ph=phases[currentPhase];
+  totalPhaseTime=ph.dur;timeLeft=ph.dur;
+  updatePhaseIndicator();
+  document.getElementById('phaseName').textContent=ph.name;
+  document.getElementById('phaseName').style.color=ph.clr;
+  document.getElementById('timerRing').querySelector('.ring-fill').style.stroke=ph.clr;
+  document.getElementById('breathOrb').style.background=`radial-gradient(circle,${ph.clr}80,${ph.clr}20)`;
+  document.getElementById('practiceBtn').style.display='none';
+  currentStep=0;
+  showStep();
+  startTimer();
+}
+
+function updatePhaseIndicator(){
+  const el=document.getElementById('phaseInd');
+  el.innerHTML='';
+  phases.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className=`pi ${i===currentPhase?'active':i<currentPhase?'done':''}`;
+    el.appendChild(d);
+  });
+}
+
+function showStep(){
+  const ph=phases[currentPhase];
+  if(currentStep>=ph.steps.length)return;
+  const st=ph.steps[currentStep];
+  const inst=document.getElementById('instruction');
+  inst.style.opacity=0;
+  setTimeout(()=>{
+    inst.innerHTML=st.txt.replace(/\n/g,'<br>');
+    inst.style.opacity=1;
+    inst.style.transition='opacity .4s';
+  },200);
+  const orb=document.getElementById('breathOrb');
+  const bl=document.getElementById('breathLabel');
+  if(st.breath){orb.classList.add('visible');bl.classList.add('visible');bl.textContent=st.breathTxt||''}
+  else{orb.classList.remove('visible');bl.classList.remove('visible')}
+}
+
+function startTimer(){
+  clearInterval(timer);
+  const circ=565.5;
+  updateTimerDisplay();
+  
+  let stepTimeUsed=0;
+  const ph=phases[currentPhase];
+  let stepIdx=0;
+  let stepBoundary=ph.steps[0].t;
+
+  timer=setInterval(()=>{
+    timeLeft--;stepTimeUsed++;
+    if(stepTimeUsed>=stepBoundary&&currentStep<ph.steps.length-1){
+      currentStep++;stepTimeUsed=0;
+      stepBoundary=ph.steps[currentStep].t;
+      showStep();
+    }
+    updateTimerDisplay();
+    const pct=1-(timeLeft/totalPhaseTime);
+    document.getElementById('ringFill').style.strokeDashoffset=circ*pct;
+    if(timeLeft<=0){
+      clearInterval(timer);
+      if(currentPhase<phases.length-1){
+        currentPhase++;runPhase();
+      }else{
+        go('done');
+      }
+    }
+  },1000);
+}
+
+function updateTimerDisplay(){
+  const m=Math.floor(timeLeft/60);const s=timeLeft%60;
+  document.getElementById('timerNum').textContent=m>0?`${m}:${s.toString().padStart(2,'0')}`:s;
+  document.getElementById('timerLabel').textContent=timeLeft>60?'remaining':'seconds';
+}
+
+function nextStep(){}
+</script>
+</body>
+</html>

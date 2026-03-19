@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neurochakra Block Diagnostic™ | Miindtraa</title>
+<meta name="description" content="7 questions to discover exactly where your energy is stuck. Based on the NQH™ 5-Step Mapping Method by Dr. Amaey & Pankaj.">
+<meta property="og:title" content="Neurochakra Block Diagnostic™ | Miindtraa">
+<meta property="og:description" content="Discover which chakra-emotion-belief pattern is running your life. Free diagnostic tool.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple: #6B2FA0; --purple-deep: #4A1D73; --purple-light: #F5F0FF;
+  --orange: #E67E22; --orange-glow: rgba(230,126,34,0.3);
+  --dark: #1A1A2E; --dark2: #16213E;
+  --white: #FFFFFF; --off-white: #FAFAFA; --grey: #8E8E9A; --light-border: #E8E0F0;
+  --red: #E74C3C; --orange-ch: #E67E22; --yellow: #F1C40F; --green: #27AE60;
+  --blue: #3498DB; --indigo: #8E44AD; --violet: #9B59B6;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --radius: 16px; --radius-sm: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--off-white); color: var(--dark); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+.fade-up { animation: fadeUp 0.6s ease forwards; }
+.fade-in { animation: fadeIn 0.4s ease forwards; }
+
+/* ─── SCREENS ─── */
+.screen { display: none; min-height: 100vh; min-height: 100dvh; }
+.screen.active { display: flex; flex-direction: column; }
+
+/* ─── INTRO SCREEN ─── */
+.intro-screen {
+  background: linear-gradient(145deg, var(--dark) 0%, var(--purple-deep) 40%, var(--purple) 100%);
+  background-size: 200% 200%; animation: gradientShift 8s ease infinite;
+  justify-content: center; align-items: center; text-align: center; padding: 32px 24px;
+  position: relative; overflow: hidden;
+}
+.intro-screen::before {
+  content: ''; position: absolute; width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(107,47,160,0.3) 0%, transparent 70%);
+  top: -100px; right: -100px; pointer-events: none;
+}
+.intro-screen::after {
+  content: ''; position: absolute; width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(230,126,34,0.15) 0%, transparent 70%);
+  bottom: -80px; left: -80px; pointer-events: none;
+}
+.intro-content { position: relative; z-index: 2; max-width: 480px; }
+.brand-tag { font-size: 12px; letter-spacing: 4px; color: rgba(255,255,255,0.45); text-transform: uppercase; margin-bottom: 24px; font-weight: 500; }
+.intro-title { font-family: var(--font-display); font-size: 38px; font-weight: 800; color: var(--white); line-height: 1.15; margin-bottom: 16px; }
+.intro-title span { color: var(--orange); }
+.intro-sub { font-size: 17px; color: rgba(255,255,255,0.7); line-height: 1.65; margin-bottom: 32px; font-weight: 400; }
+.intro-features { display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; text-align: left; }
+.intro-feature { display: flex; gap: 12px; align-items: center; background: rgba(255,255,255,0.07); border-radius: var(--radius-sm); padding: 12px 16px; backdrop-filter: blur(8px); }
+.intro-feature-icon { font-size: 20px; flex-shrink: 0; }
+.intro-feature-text { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.4; }
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--orange); color: var(--white); border: none; border-radius: 50px;
+  padding: 18px 44px; font-size: 17px; font-weight: 700; font-family: var(--font-body);
+  cursor: pointer; transition: all 0.3s ease;
+  box-shadow: 0 8px 32px var(--orange-glow);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px var(--orange-glow); }
+.btn-primary:active { transform: translateY(0); }
+
+.copyright { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 32px; line-height: 1.6; }
+
+/* ─── QUIZ SCREEN ─── */
+.quiz-screen { background: var(--purple-light); }
+.quiz-header { background: var(--purple); padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; }
+.quiz-header-brand { font-size: 12px; font-weight: 600; color: var(--white); letter-spacing: 1px; }
+.quiz-header-count { font-size: 13px; color: rgba(255,255,255,0.6); }
+.progress-bar { height: 4px; background: var(--light-border); }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--orange), #F39C12); border-radius: 2px; transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+
+.quiz-body { flex: 1; max-width: 580px; width: 100%; margin: 0 auto; padding: 28px 20px; }
+.question-text { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--dark); line-height: 1.35; margin-bottom: 24px; }
+.options { display: flex; flex-direction: column; gap: 10px; }
+.option-btn {
+  background: var(--white); border: 2px solid var(--light-border); border-radius: var(--radius);
+  padding: 16px 18px; font-size: 15px; line-height: 1.55; text-align: left; cursor: pointer;
+  font-family: var(--font-body); color: var(--dark); transition: all 0.25s ease;
+  position: relative; overflow: hidden;
+}
+.option-btn::before {
+  content: ''; position: absolute; inset: 0; background: var(--purple);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease; z-index: 0;
+}
+.option-btn:hover { border-color: var(--purple); transform: translateX(4px); }
+.option-btn.selected { border-color: var(--purple); color: var(--white); }
+.option-btn.selected::before { transform: scaleX(1); }
+.option-btn span { position: relative; z-index: 1; }
+.option-btn.dimmed { opacity: 0.4; pointer-events: none; }
+.quiz-hint { text-align: center; font-size: 13px; color: var(--grey); margin-top: 20px; }
+
+/* ─── LOADING SCREEN ─── */
+.loading-screen {
+  background: linear-gradient(145deg, var(--dark) 0%, var(--purple-deep) 100%);
+  justify-content: center; align-items: center; text-align: center; padding: 32px;
+}
+.loading-text { font-family: var(--font-display); font-size: 24px; color: var(--white); margin-bottom: 24px; }
+.loading-sub { font-size: 15px; color: rgba(255,255,255,0.6); margin-bottom: 32px; }
+.loader { width: 60px; height: 60px; border: 3px solid rgba(255,255,255,0.15); border-top-color: var(--orange); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ─── RESULT SCREEN ─── */
+.result-screen { background: var(--off-white); }
+.result-hero { padding: 40px 24px; text-align: center; position: relative; overflow: hidden; }
+.result-hero::before { content: ''; position: absolute; inset: 0; opacity: 0.08; background: radial-gradient(circle at 50% 0%, currentColor, transparent 60%); }
+.result-emoji { font-size: 64px; animation: float 3s ease infinite; margin-bottom: 12px; }
+.result-name { font-family: var(--font-display); font-size: 34px; font-weight: 800; margin-bottom: 6px; }
+.result-chakra { font-size: 17px; opacity: 0.8; font-weight: 500; }
+
+.result-body { max-width: 580px; margin: 0 auto; padding: 0 20px 40px; }
+.result-card {
+  background: var(--white); border-radius: var(--radius); padding: 22px;
+  margin-bottom: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  animation: fadeUp 0.5s ease forwards; opacity: 0;
+}
+.result-card:nth-child(1) { animation-delay: 0.1s; }
+.result-card:nth-child(2) { animation-delay: 0.2s; }
+.result-card:nth-child(3) { animation-delay: 0.3s; }
+.result-card:nth-child(4) { animation-delay: 0.35s; }
+.result-card:nth-child(5) { animation-delay: 0.4s; }
+.result-card:nth-child(6) { animation-delay: 0.45s; }
+.card-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 8px; }
+.card-text { font-size: 15px; line-height: 1.65; color: #444; }
+.card-text em { font-style: italic; color: var(--dark); }
+
+.nqh-card {
+  background: var(--purple-light); border: 2px solid rgba(107,47,160,0.15);
+  border-radius: var(--radius); padding: 22px; margin-bottom: 14px;
+  animation: fadeUp 0.5s ease 0.5s forwards; opacity: 0;
+}
+.nqh-card .card-label { color: var(--purple); }
+
+.awareness-banner {
+  background: linear-gradient(135deg, #FFF3E0, #FFF8F0);
+  border-left: 4px solid var(--orange); border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 20px 22px; margin-bottom: 24px;
+  animation: fadeUp 0.5s ease 0.55s forwards; opacity: 0;
+}
+.awareness-banner p { font-size: 15px; line-height: 1.65; color: var(--dark); }
+.awareness-banner strong { color: var(--orange); }
+
+.cta-block {
+  background: linear-gradient(145deg, var(--purple), var(--dark2));
+  border-radius: 20px; padding: 32px 24px; text-align: center;
+  margin-bottom: 20px; animation: fadeUp 0.5s ease 0.6s forwards; opacity: 0;
+}
+.cta-block h3 { font-family: var(--font-display); font-size: 22px; color: var(--white); margin-bottom: 10px; }
+.cta-block p { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.6; margin-bottom: 20px; }
+.cta-block .btn-primary { font-size: 16px; padding: 16px 36px; }
+.cta-block a { color: var(--white); text-decoration: none; }
+
+.btn-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; animation: fadeIn 0.4s ease 0.7s forwards; opacity: 0; }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 6px; background: var(--white);
+  border: 1.5px solid var(--light-border); border-radius: var(--radius-sm); padding: 11px 18px;
+  font-size: 13px; font-family: var(--font-body); font-weight: 600; cursor: pointer;
+  color: var(--purple); transition: all 0.2s; text-decoration: none;
+}
+.btn-secondary:hover { border-color: var(--purple); background: var(--purple-light); }
+
+.result-footer {
+  text-align: center; padding: 20px 0; border-top: 1px solid var(--light-border);
+  margin-top: 8px; animation: fadeIn 0.4s ease 0.8s forwards; opacity: 0;
+}
+.result-footer p { font-size: 11px; color: var(--grey); line-height: 1.7; }
+
+/* ─── MOBILE ─── */
+@media (max-width: 480px) {
+  .intro-title { font-size: 30px; }
+  .question-text { font-size: 19px; }
+  .result-name { font-size: 28px; }
+  .result-emoji { font-size: 52px; }
+  .option-btn { padding: 14px 15px; font-size: 14px; }
+  .cta-block { padding: 24px 18px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ INTRO ═══ -->
+<div id="intro" class="screen intro-screen active">
+  <div class="intro-content fade-up">
+    <div class="brand-tag">Miindtraa &bull; NQH&trade;</div>
+    <h1 class="intro-title">The Neurochakra<br><span>Block Diagnostic</span></h1>
+    <p class="intro-sub">7 questions to discover exactly where your energy is stuck &mdash; and which chakra-emotion-belief pattern is running your life.</p>
+    <div class="intro-features">
+      <div class="intro-feature"><span class="intro-feature-icon">&#9201;</span><span class="intro-feature-text">Takes 3 minutes to complete</span></div>
+      <div class="intro-feature"><span class="intro-feature-icon">&#129504;</span><span class="intro-feature-text">Based on the NQH&trade; 5-Step Mapping Method</span></div>
+      <div class="intro-feature"><span class="intro-feature-icon">&#127919;</span><span class="intro-feature-text">Your results are personalised, not generic</span></div>
+      <div class="intro-feature"><span class="intro-feature-icon">&#128156;</span><span class="intro-feature-text">Used by certified NQH practitioners with clients</span></div>
+    </div>
+    <button class="btn-primary" onclick="startQuiz()">Start the Diagnostic <span>&rarr;</span></button>
+    <p class="copyright">&copy; Miindtraa Global | Dr. Amaey A. Parekh &amp; Pankaj Nikam<br>Neurochakra Quantum Healing&trade;</p>
+  </div>
+</div>
+
+<!-- ═══ QUIZ ═══ -->
+<div id="quiz" class="screen quiz-screen">
+  <div class="quiz-header">
+    <span class="quiz-header-brand">NQH&trade; DIAGNOSTIC</span>
+    <span class="quiz-header-count" id="counter">1 / 7</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progress" style="width:0%"></div></div>
+  <div class="quiz-body">
+    <h2 class="question-text fade-up" id="question"></h2>
+    <div class="options" id="options"></div>
+    <p class="quiz-hint">Choose what resonates most &mdash; not what you think you should feel.</p>
+  </div>
+</div>
+
+<!-- ═══ LOADING ═══ -->
+<div id="loading" class="screen loading-screen">
+  <div>
+    <p class="loading-text">Analysing your energy blueprint&hellip;</p>
+    <p class="loading-sub">Mapping chakras, emotions, and beliefs</p>
+    <div class="loader"></div>
+  </div>
+</div>
+
+<!-- ═══ RESULT ═══ -->
+<div id="result" class="screen result-screen">
+  <div class="result-hero" id="resultHero">
+    <div class="result-emoji" id="resultEmoji"></div>
+    <h1 class="result-name" id="resultName"></h1>
+    <p class="result-chakra" id="resultChakra"></p>
+  </div>
+  <div class="result-body" id="resultBody"></div>
+</div>
+
+<script>
+const questions = [
+  { q: "When you face an unexpected life change, what is your FIRST internal reaction?", opts: [
+    { k:"A", t:"I feel unsafe. Worst-case scenarios flood my mind about survival and money." },
+    { k:"B", t:"I feel guilty or ashamed, as if I somehow caused this or don\u2019t deserve stability." },
+    { k:"C", t:"I feel powerless and small, like I have no control over what happens." },
+    { k:"D", t:"I feel a deep ache \u2014 sadness, grief, or the pain of being let down again." },
+    { k:"E", t:"I go silent. I can\u2019t find words to express what I\u2019m feeling." },
+    { k:"F", t:"My mind races. I overthink and can\u2019t stop the mental spiral." },
+    { k:"G", t:"I feel disconnected from everything \u2014 like nothing matters." }
+  ]},
+  { q: "Which thought do you catch yourself thinking MOST often?", opts: [
+    { k:"A", t:"\u201CThe world is not safe. Something bad is always about to happen.\u201D" },
+    { k:"B", t:"\u201CI don\u2019t deserve good things. If I enjoy life, it\u2019ll be taken away.\u201D" },
+    { k:"C", t:"\u201CI\u2019m not good enough. No matter what I do, it\u2019s never enough.\u201D" },
+    { k:"D", t:"\u201CLove always leads to pain. It\u2019s safer to keep my heart closed.\u201D" },
+    { k:"E", t:"\u201CMy voice doesn\u2019t matter. Nobody really listens to me.\u201D" },
+    { k:"F", t:"\u201CI can\u2019t trust myself to make the right decision. What if I\u2019m wrong?\u201D" },
+    { k:"G", t:"\u201CThere\u2019s no point to any of this. I feel lost and disconnected.\u201D" }
+  ]},
+  { q: "Where do you MOST frequently experience physical tension or discomfort?", opts: [
+    { k:"A", t:"Lower back, legs, or feet. Feeling heavy, ungrounded." },
+    { k:"B", t:"Lower abdomen, hips, or reproductive area." },
+    { k:"C", t:"Stomach, upper abdomen. Butterflies, tightness, or IBS-like symptoms." },
+    { k:"D", t:"Chest, shoulders, or upper back. Heaviness around the heart." },
+    { k:"E", t:"Throat, jaw, or neck. Tension, tightness, throat clearing." },
+    { k:"F", t:"Forehead, temples, or behind the eyes. Headaches, mental fatigue." },
+    { k:"G", t:"Top of head, or general disconnection from the body entirely." }
+  ]},
+  { q: "In your relationships, which pattern do you MOST recognise?", opts: [
+    { k:"A", t:"I cling for security or push people away \u2014 trust feels impossible." },
+    { k:"B", t:"I lose myself. I suppress my needs to keep others happy." },
+    { k:"C", t:"I try to control everything or completely surrender my power." },
+    { k:"D", t:"I keep people at a distance. The closer they get, the more scared I become." },
+    { k:"E", t:"I struggle to speak up about what I need. I avoid conflict even when it hurts." },
+    { k:"F", t:"I overthink everything the other person says or does." },
+    { k:"G", t:"I feel emotionally distant even in close relationships." }
+  ]},
+  { q: "In career and finances, which frustration resonates MOST?", opts: [
+    { k:"A", t:"Financial insecurity is a constant background noise in my life." },
+    { k:"B", t:"I feel creatively blocked. I can\u2019t access passion or joy in my work." },
+    { k:"C", t:"I know I\u2019m capable of more but I\u2019m afraid of being seen or judged." },
+    { k:"D", t:"I give and give at work but never feel valued or appreciated." },
+    { k:"E", t:"I have ideas but can\u2019t communicate them. I freeze in meetings." },
+    { k:"F", t:"I can\u2019t see my path clearly. Mental fog about what I\u2019m meant to do." },
+    { k:"G", t:"Nothing feels meaningful anymore. Going through the motions." }
+  ]},
+  { q: "If you could wave a magic wand and change ONE thing about your inner world?", opts: [
+    { k:"A", t:"I want to feel SAFE and grounded in my body and in life." },
+    { k:"B", t:"I want to feel FREE to experience joy, creativity, and pleasure without guilt." },
+    { k:"C", t:"I want to feel CONFIDENT and powerful in who I am." },
+    { k:"D", t:"I want to feel LOVED and able to trust love again." },
+    { k:"E", t:"I want to feel HEARD and speak my truth without fear." },
+    { k:"F", t:"I want to feel CLEAR and trust my own inner guidance." },
+    { k:"G", t:"I want to feel CONNECTED to something bigger than myself." }
+  ]},
+  { q: "When you try to heal or grow (therapy, meditation, self-help), what tends to happen?", opts: [
+    { k:"A", t:"I feel better temporarily but the fear and anxiety always come back." },
+    { k:"B", t:"I understand intellectually but can\u2019t FEEL the shift. Emotions stay stuck." },
+    { k:"C", t:"I make progress then self-sabotage. Something inside pulls me back to \u2018small.\u2019" },
+    { k:"D", t:"Other areas heal but relationships and emotional intimacy remain painful." },
+    { k:"E", t:"I process internally but can\u2019t express the transformation outwardly." },
+    { k:"F", t:"I overthink the process itself. I analyse every technique instead of surrendering." },
+    { k:"G", t:"I feel disconnected from healing. It works for everyone else but not me." }
+  ]}
+];
+
+const results = {
+  A: { name:"The Survival Loop", chakra:"Root Chakra (Muladhara)", color:"#E74C3C", emoji:"\uD83D\uDD34",
+    emotion:"Fear, insecurity, anxiety, survival-mode thinking",
+    belief:"\u201CI am not safe.\u201D \u201CThe world is dangerous.\u201D \u201CThere isn\u2019t enough for me.\u201D",
+    pattern:"Your nervous system is stuck in fight-or-flight, scanning for threats even when you\u2019re objectively safe. You may cling to security (money, relationships, routines) or avoid commitment entirely because nothing feels stable enough to trust. This pattern often originates from early childhood experiences where safety, belonging, or basic needs were threatened or inconsistent.",
+    body:"Lower back pain, leg/feet issues, immune weakness, weight fluctuation, feeling physically ungrounded",
+    nqh:"Flow Frequency Tuning\u2122 regulates your nervous system out of survival mode by shifting brainwave states from anxious Beta to calm Alpha-Theta. ERT\u2122 (Emotional Reset Technique) releases the stored fear at its energetic origin in the Root Chakra. Reality Sculpting\u2122 installs a new felt-sense of safety in the body and energy field." },
+  B: { name:"The Guilt-Joy Freeze", chakra:"Sacral Chakra (Svadhisthana)", color:"#E67E22", emoji:"\uD83D\uDFE0",
+    emotion:"Guilt, shame about emotions/body/desires, emotional numbness, fear of pleasure",
+    belief:"\u201CI don\u2019t deserve pleasure.\u201D \u201CMy feelings are wrong.\u201D \u201CEnjoyment leads to punishment.\u201D",
+    pattern:"You have an unconscious programme that equates joy, desire, and emotional expression with danger or punishment. You suppress creative impulses, struggle to receive compliments or gifts, and feel guilty whenever something good happens. This pattern often forms in families where emotional expression was discouraged, or where joy was followed by loss.",
+    body:"Reproductive issues, lower abdominal tension, hip stiffness, hormonal imbalances",
+    nqh:"ERT\u2122 (Emotional Reset Technique) releases stored guilt at its energetic root in the Sacral Chakra. Energy Pathway Tuning\u2122 restores energetic flow through the sacral centre. Inner Light Healing\u2122 reconnects you with your creative, joyful essence beneath the suppression. The NQH 4-pillar approach addresses mind, energy, emotion, and belief simultaneously." },
+  C: { name:"The Unworthiness Spiral", chakra:"Solar Plexus Chakra (Manipura)", color:"#F1C40F", emoji:"\uD83D\uDFE1",
+    emotion:"Shame, low self-worth, powerlessness, fear of failure and judgment",
+    belief:"\u201CI am not good enough.\u201D \u201CI must prove my worth.\u201D \u201CIt\u2019s safer to stay small.\u201D",
+    pattern:"No matter what you achieve, an internal voice says it\u2019s not enough. You oscillate between overworking to prove yourself and collapsing into inaction. You may avoid being visible, struggle to charge what you\u2019re worth, or let others make decisions for you. This pattern often forms when childhood praise was conditional on performance, or when you were regularly compared to others.",
+    body:"Digestive issues (IBS, acid reflux), mid-back pain, chronic fatigue, blood sugar imbalance",
+    nqh:"Dynamic Brain Mapping\u2122 identifies the specific belief-chakra-brain connection driving the unworthiness pattern. AQMP\u2122 (Advanced Quantum Mind Programming) rewires the core belief at the subconscious level. Light Flow Activation\u2122 anchors a new energetic identity of inherent worth. Unlike affirmations that create cognitive dissonance, NQH works at the neurological AND energetic level simultaneously." },
+  D: { name:"The Love Wall", chakra:"Heart Chakra (Anahata)", color:"#27AE60", emoji:"\uD83D\uDC9A",
+    emotion:"Grief, fear of betrayal/abandonment, emotional heaviness, bitterness",
+    belief:"\u201CLove is painful.\u201D \u201CI am unworthy of love.\u201D \u201CIf I love fully, I\u2019ll be abandoned.\u201D",
+    pattern:"You have built an invisible wall around your heart. You may overgive to avoid abandonment, or withdraw completely to avoid being hurt. Emotional intimacy feels dangerous. You might appear strong and self-sufficient on the outside while feeling deeply lonely inside. This pattern often forms from experiences of betrayal, loss of a loved one, or conditional love in childhood.",
+    body:"Chest tightness, upper back/shoulder pain, respiratory issues (asthma), heart/circulation problems",
+    nqh:"ERT\u2122 releases stored grief and betrayal at its Heart Chakra origin. Energy Reconciliation\u2122 heals relational wounds without requiring the other person\u2019s involvement. Harmony Protocol\u2122 restores the ability to give and receive love in balance. The NQH approach doesn\u2019t just \u201Copen your heart\u201D conceptually \u2014 it releases the actual energetic imprint that closed it." },
+  E: { name:"The Silent Truth", chakra:"Throat Chakra (Vishuddha)", color:"#3498DB", emoji:"\uD83D\uDD35",
+    emotion:"Fear of judgment/rejection, suppressed expression, feeling unheard",
+    belief:"\u201CMy voice doesn\u2019t matter.\u201D \u201CSpeaking my truth leads to rejection.\u201D \u201CSilence is safer.\u201D",
+    pattern:"You carry a deep programme that expressing yourself authentically will lead to rejection, conflict, or punishment. You swallow your words, avoid confrontation, and may struggle with creative expression. Others perceive you as agreeable, but internally you feel frustrated, unseen, and resentful. This often forms in environments where children were told to be quiet, or where speaking up was punished.",
+    body:"Throat pain, thyroid issues, jaw tension/teeth grinding, neck stiffness, frequent sore throats",
+    nqh:"ERT\u2122 releases the stored fear at the Throat Chakra centre. Energy Pathway Tuning\u2122 restores energetic flow through Vishuddha. Flow Frequency Tuning\u2122 regulates the nervous system\u2019s freeze response that activates when you try to speak. NQH doesn\u2019t just teach \u201Ccommunication skills\u201D \u2014 it releases the energetic lock that physically prevents authentic expression." },
+  F: { name:"The Overthinking Fog", chakra:"Third Eye Chakra (Ajna)", color:"#8E44AD", emoji:"\uD83D\uDFE3",
+    emotion:"Confusion, self-doubt, mental overwhelm, distrust of intuition",
+    belief:"\u201CI can\u2019t trust myself.\u201D \u201CI need proof before I can believe.\u201D \u201CIf I follow my intuition, I\u2019ll be wrong.\u201D",
+    pattern:"Your mind never stops. You analyse every decision, second-guess every choice, and rely exclusively on logic while dismissing deeper knowing. You experience decision paralysis, mental fatigue, and a persistent sense of not knowing what you want. This pattern often develops when your perceptions were invalidated in childhood or when being wrong was dangerous.",
+    body:"Headaches, migraines, vision problems, sinus issues, sleep disturbances, vivid nightmares",
+    nqh:"AQMP\u2122 (Advanced Quantum Mind Programming) reprograms the core belief that self-trust is dangerous. Flow Frequency Tuning\u2122 shifts brainwave states from overactive Beta to the intuitive Alpha-Theta range. Quantum Visioning\u2122 reconnects you with inner clarity and purpose. NQH works because it doesn\u2019t add more information to an overloaded mind \u2014 it quiets the noise at the neurological level while restoring intuitive flow energetically." },
+  G: { name:"The Disconnection Drift", chakra:"Crown Chakra (Sahasrara)", color:"#9B59B6", emoji:"\uD83D\uDC51",
+    emotion:"Purposelessness, spiritual disconnection, existential emptiness, isolation",
+    belief:"\u201CI am alone in the universe.\u201D \u201CThere\u2019s no higher meaning.\u201D \u201CI must control everything to be safe.\u201D",
+    pattern:"You feel as though you\u2019re moving through life without a compass. Things that once inspired you feel flat. You go through the motions while feeling fundamentally disconnected from meaning. You might swing between wanting to believe in something greater and feeling cynical about everything spiritual. This pattern often emerges after profound loss, disillusionment, or when trust in life was deeply shaken.",
+    body:"Crown tension/migraines, nervous system disorders, deep sleep issues, light/sound sensitivity, cognitive fog",
+    nqh:"Light Flow Activation\u2122 restores the crown-to-root energetic flow that reconnects you with embodied purpose. Energy Blueprint Meditation\u2122 reconnects you with your soul\u2019s original energetic pattern. Harmony Protocol\u2122 bridges the gap between spiritual longing and grounded daily living. NQH is uniquely equipped because it works across all 4 pillars simultaneously \u2014 reconnecting mind, energy, emotion, and purpose." }
+};
+
+let currentQ = 0, answers = [], locked = false;
+
+function show(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0,0); }
+
+function startQuiz() { show('quiz'); renderQuestion(); }
+
+function renderQuestion() {
+  const q = questions[currentQ];
+  document.getElementById('counter').textContent = `${currentQ + 1} / ${questions.length}`;
+  document.getElementById('progress').style.width = `${(currentQ / questions.length) * 100}%`;
+  
+  const qEl = document.getElementById('question');
+  qEl.className = 'question-text'; void qEl.offsetWidth; qEl.className = 'question-text fade-up';
+  qEl.textContent = q.q;
+
+  const optsEl = document.getElementById('options');
+  optsEl.innerHTML = '';
+  q.opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `<span>${opt.t}</span>`;
+    btn.style.animationDelay = `${i * 0.06}s`;
+    btn.onclick = () => selectAnswer(opt.k, btn);
+    optsEl.appendChild(btn);
+  });
+  locked = false;
+}
+
+function selectAnswer(key, btn) {
+  if (locked) return;
+  locked = true;
+  btn.classList.add('selected');
+  document.querySelectorAll('.option-btn').forEach(b => { if (b !== btn) b.classList.add('dimmed'); });
+  
+  setTimeout(() => {
+    answers.push(key);
+    if (currentQ < questions.length - 1) {
+      currentQ++;
+      renderQuestion();
+    } else {
+      showLoading();
+    }
+  }, 500);
+}
+
+function showLoading() {
+  show('loading');
+  document.getElementById('progress').style.width = '100%';
+  setTimeout(showResult, 2200);
+}
+
+function showResult() {
+  const counts = {};
+  answers.forEach(a => { counts[a] = (counts[a] || 0) + 1; });
+  const dominant = Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0];
+  const r = results[dominant];
+
+  document.getElementById('resultHero').style.background = `linear-gradient(145deg, ${r.color}18, ${r.color}08)`;
+  document.getElementById('resultHero').style.color = r.color;
+  document.getElementById('resultEmoji').textContent = r.emoji;
+  document.getElementById('resultName').textContent = r.name;
+  document.getElementById('resultName').style.color = r.color;
+  document.getElementById('resultChakra').textContent = r.chakra;
+
+  const body = document.getElementById('resultBody');
+  body.innerHTML = `
+    <div class="result-card"><div class="card-label" style="color:${r.color}">Core Emotions</div><div class="card-text">${r.emotion}</div></div>
+    <div class="result-card"><div class="card-label" style="color:${r.color}">Root Beliefs Running This Pattern</div><div class="card-text"><em>${r.belief}</em></div></div>
+    <div class="result-card"><div class="card-label" style="color:${r.color}">Your Pattern Explained</div><div class="card-text">${r.pattern}</div></div>
+    <div class="result-card"><div class="card-label" style="color:${r.color}">Physical Signals in Your Body</div><div class="card-text">${r.body}</div></div>
+    <div class="nqh-card"><div class="card-label">How NQH&trade; Addresses This Block</div><div class="card-text">${r.nqh}</div></div>
+    <div class="awareness-banner"><p><strong>Awareness is 30% of the healing.</strong> You\u2019ve identified your dominant pattern by name. The remaining 70% requires working with the actual NQH protocols \u2014 the same techniques our certified practitioners use to create lasting transformation.</p></div>
+    <div class="cta-block">
+      <h3>Experience the Full NQH System</h3>
+      <p>The NQH Foundation Masterclass (\u20B996) with Dr. Amaey &amp; Pankaj will show you exactly how to clear this block using the 4-pillar system.</p>
+      <a href="https://nqhmasterclass.miindtraa.com" target="_blank"><button class="btn-primary">Join the Masterclass \u2014 \u20B996 &rarr;</button></a>
+    </div>
+    <div class="btn-row">
+      <a href="https://instagram.com/miindtraa" target="_blank" class="btn-secondary">Follow @miindtraa</a>
+      <button class="btn-secondary" onclick="restart()">Retake Diagnostic</button>
+    </div>
+    <div class="result-footer">
+      <p>&copy; Miindtraa Global | Dr. Amaey A. Parekh &amp; Pankaj Nikam<br>
+      Based on the NQH&trade; 5-Step Mapping Method | www.miindtraa.com</p>
+    </div>
+  `;
+  show('result');
+}
+
+function restart() { currentQ = 0; answers = []; locked = false; show('intro'); }
+</script>
+</body>
+</html>

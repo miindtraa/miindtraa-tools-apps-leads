@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nervous System Type Test | Miindtraa NQH™</title>
+<meta name="description" content="Are you a Fighter, Freezer, Fleer, or Fawner? Discover the survival pattern running your life.">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0D0D1A;--bg2:#141428;--card:#1C1C35;--card2:#252545;
+  --fire:#FF4D4D;--ice:#6EC6FF;--wind:#FFB347;--heart:#FF6B9D;
+  --accent:#A78BFA;--accent2:#7C3AED;--white:#FFFFFF;--grey:#9CA3AF;--border:#2D2D4A;
+  --font:'Outfit',sans-serif;--font2:'Space Grotesk',sans-serif;
+  --r:16px;--rs:10px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes glow{0%,100%{box-shadow:0 0 20px rgba(167,139,250,0.2)}50%{box-shadow:0 0 40px rgba(167,139,250,0.4)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+@keyframes barGrow{from{width:0}to{width:var(--w)}}
+.fu{animation:fadeUp .5s ease forwards;opacity:0}
+.fi{animation:fadeUp .4s ease forwards;opacity:0}
+
+.screen{display:none;min-height:100vh;min-height:100dvh}
+.screen.active{display:flex;flex-direction:column}
+
+/* ═══ INTRO ═══ */
+.intro{justify-content:center;align-items:center;text-align:center;padding:32px 24px;position:relative;overflow:hidden;
+  background:radial-gradient(ellipse at 30% 20%,rgba(124,58,237,0.15),transparent 50%),
+  radial-gradient(ellipse at 70% 80%,rgba(255,77,77,0.1),transparent 50%),var(--bg)}
+.intro::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(167,139,250,0.08),transparent 70%);
+  top:-200px;right:-200px;pointer-events:none}
+.intro-wrap{position:relative;z-index:2;max-width:480px}
+.brand{font-size:11px;letter-spacing:4px;color:var(--grey);text-transform:uppercase;margin-bottom:20px;font-family:var(--font2)}
+.title{font-family:var(--font);font-size:36px;font-weight:800;line-height:1.15;margin-bottom:14px}
+.title em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--fire));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{font-size:16px;color:var(--grey);line-height:1.65;margin-bottom:28px;font-weight:300}
+
+.type-chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
+.chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;text-align:center;min-width:95px;transition:all .3s}
+.chip:hover{transform:translateY(-3px);border-color:var(--accent)}
+.chip-icon{font-size:28px;display:block;margin-bottom:4px}
+.chip-name{font-size:12px;font-weight:700;letter-spacing:1px}
+
+.btn{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:50px;padding:18px 44px;font-size:17px;font-weight:700;font-family:var(--font);cursor:pointer;transition:all .3s}
+.btn-main{background:linear-gradient(135deg,var(--accent2),var(--accent));color:var(--white);box-shadow:0 8px 30px rgba(124,58,237,0.35)}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(124,58,237,0.5)}
+.btn-orange{background:linear-gradient(135deg,#E67E22,#F39C12);color:var(--white);box-shadow:0 8px 30px rgba(230,126,34,0.3)}
+.btn-orange:hover{transform:translateY(-2px)}
+.copy{font-size:11px;color:rgba(255,255,255,0.25);margin-top:28px;line-height:1.7}
+
+/* ═══ QUIZ ═══ */
+.quiz{background:var(--bg)}
+.qheader{background:var(--card);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+.qheader span{font-size:12px;font-family:var(--font2);letter-spacing:1px}
+.qheader .ct{color:var(--grey)}
+.pbar{height:3px;background:var(--card2)}
+.pfill{height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.qbody{flex:1;max-width:560px;width:100%;margin:0 auto;padding:28px 20px}
+.qtxt{font-size:20px;font-weight:700;line-height:1.4;margin-bottom:22px}
+
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{background:var(--card);border:2px solid var(--border);border-radius:var(--r);padding:15px 16px;font-size:15px;line-height:1.5;
+  text-align:left;cursor:pointer;font-family:var(--font);color:var(--white);transition:all .25s;display:flex;gap:12px;align-items:flex-start}
+.opt:hover{border-color:var(--accent);transform:translateX(4px)}
+.opt.sel{border-color:var(--accent);background:linear-gradient(135deg,var(--accent2),rgba(124,58,237,0.5))}
+.opt.dim{opacity:.35;pointer-events:none}
+.opt-icon{font-size:22px;flex-shrink:0;line-height:1.3}
+.opt-txt{flex:1}
+.qhint{text-align:center;font-size:12px;color:var(--grey);margin-top:18px}
+
+/* ═══ LOADING ═══ */
+.loading{background:var(--bg);justify-content:center;align-items:center;text-align:center;padding:32px}
+.loader{width:56px;height:56px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 24px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ld-txt{font-size:22px;font-weight:700;margin-bottom:8px}
+.ld-sub{font-size:14px;color:var(--grey)}
+
+/* ═══ RESULT ═══ */
+.result{background:var(--bg)}
+.res-hero{padding:40px 24px 32px;text-align:center;position:relative;overflow:hidden}
+.res-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,var(--bg))}
+.res-emoji{font-size:64px;animation:float 3s ease infinite;margin-bottom:10px;display:block}
+.res-name{font-size:32px;font-weight:800;margin-bottom:4px;position:relative;z-index:2}
+.res-sub{font-size:16px;font-weight:500;opacity:.7;position:relative;z-index:2}
+
+.res-body{max-width:560px;margin:0 auto;padding:0 20px 40px}
+
+.score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px}
+.score-tile{background:var(--card);border-radius:var(--rs);padding:14px 8px;text-align:center;border:2px solid var(--border);transition:all .3s}
+.score-tile.top{border-color:var(--accent)}
+.score-tile .st-icon{font-size:24px;display:block;margin-bottom:4px}
+.score-tile .st-num{font-size:22px;font-weight:800;font-family:var(--font2)}
+.score-tile .st-name{font-size:10px;letter-spacing:1px;color:var(--grey);margin-top:2px}
+.sec-note{font-size:13px;color:var(--grey);text-align:center;margin-bottom:24px;line-height:1.5}
+
+.rcard{background:var(--card);border-radius:var(--r);padding:20px;margin-bottom:12px;border-left:4px solid var(--accent)}
+.rcard-label{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:8px;font-family:var(--font2)}
+.rcard-text{font-size:15px;line-height:1.65;color:rgba(255,255,255,0.8)}
+.rcard-text em{font-style:italic;color:var(--white)}
+
+.nqh-card{background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(167,139,250,0.08));border:1px solid rgba(167,139,250,0.25);border-radius:var(--r);padding:20px;margin-bottom:20px;border-left:4px solid var(--accent)}
+
+.cta-box{background:linear-gradient(145deg,var(--accent2),#4A1D73);border-radius:20px;padding:28px 24px;text-align:center;margin-bottom:16px}
+.cta-box h3{font-size:20px;font-weight:700;margin-bottom:8px}
+.cta-box p{font-size:14px;color:rgba(255,255,255,0.7);line-height:1.6;margin-bottom:18px}
+.cta-box a{color:var(--white);text-decoration:none}
+
+.btn-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+.btn-sec{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border);border-radius:var(--rs);padding:10px 16px;font-size:13px;font-family:var(--font);font-weight:600;cursor:pointer;color:var(--accent);transition:all .2s;text-decoration:none}
+.btn-sec:hover{border-color:var(--accent);background:var(--card2)}
+
+.res-footer{text-align:center;padding:20px 0;border-top:1px solid var(--border);margin-top:8px}
+.res-footer p{font-size:11px;color:rgba(255,255,255,0.3);line-height:1.7}
+
+@media(max-width:480px){
+  .title{font-size:28px}.qtxt{font-size:18px}.res-name{font-size:26px}
+  .score-grid{grid-template-columns:repeat(2,1fr)}.chip{min-width:80px;padding:10px 12px}
+}
+</style>
+</head>
+<body>
+
+<div id="intro" class="screen intro active">
+<div class="intro-wrap fu">
+  <div class="brand">Miindtraa &bull; NQH&trade;</div>
+  <h1 class="title">Your Nervous System<br><em>Type Test</em></h1>
+  <p class="sub">Are you a Fighter, Freezer, Fleer, or Fawner?<br>Discover the survival pattern that runs your life before you even realise it.</p>
+  <div class="type-chips">
+    <div class="chip"><span class="chip-icon">&#128293;</span><span class="chip-name" style="color:var(--fire)">FIGHTER</span></div>
+    <div class="chip"><span class="chip-icon">&#129482;</span><span class="chip-name" style="color:var(--ice)">FREEZER</span></div>
+    <div class="chip"><span class="chip-icon">&#128168;</span><span class="chip-name" style="color:var(--wind)">FLEER</span></div>
+    <div class="chip"><span class="chip-icon">&#129309;</span><span class="chip-name" style="color:var(--heart)">FAWNER</span></div>
+  </div>
+  <button class="btn btn-main" onclick="go('quiz');renderQ()">Discover Your Type &rarr;</button>
+  <p class="copy">&copy; Miindtraa Global | Dr. Amaey A. Parekh &amp; Pankaj Nikam</p>
+</div>
+</div>
+
+<div id="quiz" class="screen quiz">
+<div class="qheader"><span>NERVOUS SYSTEM TYPE TEST</span><span class="ct" id="ct">1/8</span></div>
+<div class="pbar"><div class="pfill" id="pf" style="width:0%"></div></div>
+<div class="qbody">
+  <h2 class="qtxt fu" id="qtxt"></h2>
+  <div class="opts" id="opts"></div>
+  <p class="qhint">Choose what feels most automatic &mdash; not what you&rsquo;d like to do.</p>
+</div>
+</div>
+
+<div id="loading" class="screen loading">
+<div><div class="loader"></div><p class="ld-txt">Mapping your nervous system&hellip;</p><p class="ld-sub">Identifying your survival pattern</p></div>
+</div>
+
+<div id="result" class="screen result">
+<div class="res-hero" id="rHero"><span class="res-emoji" id="rEm"></span><h1 class="res-name" id="rNm"></h1><p class="res-sub" id="rSub"></p></div>
+<div class="res-body" id="rBody"></div>
+</div>
+
+<script>
+const Q=[
+{q:"Someone criticises your work publicly. Your FIRST response:",o:[
+{k:"F",t:"Anger. I want to defend myself or prove them wrong.",i:"\uD83D\uDD25"},
+{k:"Z",t:"Freeze. My mind goes blank. I can\u2019t respond.",i:"\uD83E\uDDCA"},
+{k:"L",t:"Escape. I want to leave or change the subject fast.",i:"\uD83D\uDCA8"},
+{k:"W",t:"Appease. I agree to make it stop, even if I disagree.",i:"\uD83E\uDD1D"}]},
+{q:"In a relationship where you feel unheard, you tend to:",o:[
+{k:"F",t:"Get louder. Push harder. Maybe start an argument.",i:"\uD83D\uDD25"},
+{k:"Z",t:"Shut down. Go silent. Stop trying to communicate.",i:"\uD83E\uDDCA"},
+{k:"L",t:"Plan your exit. Start creating distance mentally.",i:"\uD83D\uDCA8"},
+{k:"W",t:"Try harder to please them. Maybe the problem is me.",i:"\uD83E\uDD1D"}]},
+{q:"When facing a major life decision, you usually:",o:[
+{k:"F",t:"Decide fast. Take action. Overthinking is for others.",i:"\uD83D\uDD25"},
+{k:"Z",t:"Procrastinate indefinitely. Know I should but can\u2019t.",i:"\uD83E\uDDCA"},
+{k:"L",t:"Research obsessively. Analysis paralysis masked as prep.",i:"\uD83D\uDCA8"},
+{k:"W",t:"Ask everyone\u2019s opinion and go with whatever they suggest.",i:"\uD83E\uDD1D"}]},
+{q:"When you feel overwhelmed, your body does this:",o:[
+{k:"F",t:"Tenses up. Jaw clenches. Energy rushes to limbs.",i:"\uD83D\uDD25"},
+{k:"Z",t:"Goes numb. Heavy. Disconnected from body entirely.",i:"\uD83E\uDDCA"},
+{k:"L",t:"Heart races. Restless. Can\u2019t sit still.",i:"\uD83D\uDCA8"},
+{k:"W",t:"I smile. Appear calm. Nobody would know I\u2019m struggling.",i:"\uD83E\uDD1D"}]},
+{q:"Your relationship with anger is:",o:[
+{k:"F",t:"I feel it intensely and express it \u2014 sometimes too much.",i:"\uD83D\uDD25"},
+{k:"Z",t:"I don\u2019t really feel anger. I feel... nothing.",i:"\uD83E\uDDCA"},
+{k:"L",t:"Anger makes me anxious. I avoid people who trigger it.",i:"\uD83D\uDCA8"},
+{k:"W",t:"I turn anger inward. I blame myself instead of others.",i:"\uD83E\uDD1D"}]},
+{q:"Your biggest challenge in healing or personal growth:",o:[
+{k:"F",t:"Can\u2019t slow down enough to feel. I want to DO, not sit.",i:"\uD83D\uDD25"},
+{k:"Z",t:"Can\u2019t access emotions. There\u2019s a wall between me and feelings.",i:"\uD83E\uDDCA"},
+{k:"L",t:"I start but can\u2019t stay. My mind wanders. I quit early.",i:"\uD83D\uDCA8"},
+{k:"W",t:"I focus on everyone else\u2019s healing. My needs come last.",i:"\uD83E\uDD1D"}]},
+{q:"As a child, you learned the safest strategy was to:",o:[
+{k:"F",t:"Be strong. Don\u2019t cry. Take control before anyone else.",i:"\uD83D\uDD25"},
+{k:"Z",t:"Be invisible. Don\u2019t cause trouble. Disappear internally.",i:"\uD83E\uDDCA"},
+{k:"L",t:"Be independent. Don\u2019t depend on anyone. Always have an exit.",i:"\uD83D\uDCA8"},
+{k:"W",t:"Be good. Make others happy. Worth comes from being needed.",i:"\uD83E\uDD1D"}]},
+{q:"The emotion you\u2019re MOST uncomfortable sitting with:",o:[
+{k:"F",t:"Vulnerability. Feeling helpless or out of control.",i:"\uD83D\uDD25"},
+{k:"Z",t:"Joy. Intense positive feelings feel unsafe.",i:"\uD83E\uDDCA"},
+{k:"L",t:"Sadness. Deep grief feels like it might swallow me.",i:"\uD83D\uDCA8"},
+{k:"W",t:"Anger. Expressing displeasure feels dangerous.",i:"\uD83E\uDD1D"}]}
+];
+
+const T={
+F:{nm:"THE FIGHTER",sub:"Sympathetic Dominance",clr:"#FF4D4D",em:"\uD83D\uDD25",
+  chk:"Root + Solar Plexus overactivity",
+  pat:"Your nervous system\u2019s default is to take control. You become assertive, directive, sometimes aggressive. You\u2019d rather fight than feel vulnerable. This served you as a child when you needed to be strong because no one else was. But as an adult, it creates conflict in relationships, burnout at work, and an inability to receive help or soften.",
+  bod:"Jaw tension, shoulder/neck tightness, hypertension, chronic inflammation, acid reflux, adrenal overdrive",
+  shd:"Beneath the Fighter is a terrified child who learned that vulnerability = danger. Every fight is actually an attempt to feel safe.",
+  nqh:"Flow Frequency Tuning\u2122 shifts your nervous system from sympathetic overdrive to parasympathetic safety. ERT\u2122 releases the stored fear that lives beneath the anger. Inner Light Healing\u2122 reconnects you with the vulnerable inner child who started fighting to survive."},
+Z:{nm:"THE FREEZER",sub:"Dorsal Vagal Shutdown",clr:"#6EC6FF",em:"\uD83E\uDDCA",
+  chk:"Root + Sacral underactivity, Crown disconnection",
+  pat:"When threat occurs, your system shuts down. You go numb, blank, disconnected. Often labelled as lazy, unmotivated, or depressed \u2014 but your nervous system is conserving energy because it perceives the threat as too overwhelming to fight or flee from. This is the most misunderstood type.",
+  bod:"Chronic fatigue, feeling heavy and disconnected from body, poor circulation, weight gain, thyroid issues, brain fog",
+  shd:"The Freezer learned early that no response was the safest response. The shutdown was protective. But it costs you your aliveness, creativity, and capacity for connection.",
+  nqh:"Flow Frequency Tuning\u2122 gently thaws the dorsal vagal freeze through regulated nervous system activation. Energy Pathway Tuning\u2122 restores the energy flow from root to crown that shutdown blocks. Light Flow Activation\u2122 reconnects you with embodied presence and aliveness."},
+L:{nm:"THE FLEER",sub:"Sympathetic Escape",clr:"#FFB347",em:"\uD83D\uDCA8",
+  chk:"Root instability + Third Eye overactivity",
+  pat:"Your system\u2019s response is escape \u2014 physically, mentally, or emotionally. You overthink instead of feeling, start new projects to avoid completing old ones, stay busy to avoid stillness. Commitment feels like a potential trap. Every attachment triggers the urge to have an exit route.",
+  bod:"Restless legs, heart palpitations, anxiety, insomnia, racing thoughts, adrenal fatigue from chronic low-grade stress",
+  shd:"The Fleer learned that staying meant danger. Movement became safety. But running from pain also means running from connection, depth, and the healing that only comes from staying present.",
+  nqh:"Flow Frequency Tuning\u2122 grounds the flight response by anchoring the nervous system in safety. ERT\u2122 releases the root fear of entrapment stored in the Root Chakra. Energy Blueprint Meditation\u2122 installs a felt sense of safety in stillness \u2014 so you can stay without the urge to escape."},
+W:{nm:"THE FAWNER",sub:"Social Engagement Override",clr:"#FF6B9D",em:"\uD83E\uDD1D",
+  chk:"Heart + Sacral depletion, Solar Plexus collapse",
+  pat:"Your survival strategy is to make yourself indispensable. You mould yourself to others\u2019 needs, suppress your own desires, and derive your sense of safety from being needed. You\u2019re the healer who can\u2019t stop healing, the friend everyone calls at 2am, the one who says yes when their whole body screams no.",
+  bod:"Exhaustion from chronic giving, shoulder and upper back pain (carrying others), thyroid depletion, autoimmune patterns, hormonal dysregulation",
+  shd:"The Fawner learned that love was conditional on usefulness. To stop giving felt like inviting abandonment. But the cost is losing yourself entirely \u2014 your boundaries, your desires, your identity.",
+  nqh:"ERT\u2122 releases the core abandonment wound that drives the fawning response. Energy Reconciliation\u2122 heals the relational patterns where self-sacrifice was first learned. AQMP\u2122 installs the belief that your worth is inherent \u2014 not earned through endless service to others."}
+};
+
+let cq=0,ans=[],lk=false;
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+
+function renderQ(){
+  const q=Q[cq];
+  document.getElementById('ct').textContent=`${cq+1}/${Q.length}`;
+  document.getElementById('pf').style.width=`${(cq/Q.length)*100}%`;
+  const el=document.getElementById('qtxt');el.className='qtxt';void el.offsetWidth;el.className='qtxt fu';el.textContent=q.q;
+  const od=document.getElementById('opts');od.innerHTML='';
+  q.o.forEach((o,i)=>{
+    const b=document.createElement('button');b.className='opt';b.style.animationDelay=`${i*.05}s`;
+    b.innerHTML=`<span class="opt-icon">${o.i}</span><span class="opt-txt">${o.t}</span>`;
+    b.onclick=()=>pick(o.k,b);od.appendChild(b);
+  });
+  lk=false;
+}
+
+function pick(k,btn){
+  if(lk)return;lk=true;btn.classList.add('sel');
+  document.querySelectorAll('.opt').forEach(b=>{if(b!==btn)b.classList.add('dim')});
+  setTimeout(()=>{ans.push(k);if(cq<Q.length-1){cq++;renderQ()}else{go('loading');setTimeout(showRes,2000)}},400);
+}
+
+function showRes(){
+  const cnt={};ans.forEach(a=>{cnt[a]=(cnt[a]||0)+1});
+  const sorted=Object.entries(cnt).sort((a,b)=>b[1]-a[1]);
+  const d=sorted[0][0],r=T[d];
+  const sec=sorted.length>1?T[sorted[1][0]]:null;
+
+  document.getElementById('rHero').style.background=`radial-gradient(ellipse at 50% 30%,${r.clr}25,transparent 70%),var(--bg)`;
+  document.getElementById('rEm').textContent=r.em;
+  document.getElementById('rNm').textContent=`You are ${r.nm}`;document.getElementById('rNm').style.color=r.clr;
+  document.getElementById('rSub').textContent=r.sub;
+
+  let tiles='';
+  Object.entries(T).forEach(([k,t])=>{
+    const isTop=k===d;
+    tiles+=`<div class="score-tile ${isTop?'top':''}" style="${isTop?'border-color:'+t.clr:''}">
+      <span class="st-icon">${t.em}</span><span class="st-num" style="color:${t.clr}">${cnt[k]||0}/${Q.length}</span>
+      <span class="st-name">${t.nm.replace('THE ','')}</span></div>`;
+  });
+
+  let secNote=sec?`<p class="sec-note">Your secondary type is <strong style="color:${sec.clr}">${sec.nm}</strong> &mdash; this activates when your primary strategy fails.</p>`:'';
+
+  document.getElementById('rBody').innerHTML=`
+    <div class="score-grid fi" style="animation-delay:.1s">${tiles}</div>${secNote}
+    <div class="rcard fi" style="animation-delay:.15s;border-left-color:${r.clr}"><div class="rcard-label" style="color:${r.clr}">Chakra Pattern</div><div class="rcard-text">${r.chk}</div></div>
+    <div class="rcard fi" style="animation-delay:.2s;border-left-color:${r.clr}"><div class="rcard-label" style="color:${r.clr}">Your Pattern</div><div class="rcard-text">${r.pat}</div></div>
+    <div class="rcard fi" style="animation-delay:.25s;border-left-color:${r.clr}"><div class="rcard-label" style="color:${r.clr}">The Shadow Beneath</div><div class="rcard-text"><em>${r.shd}</em></div></div>
+    <div class="rcard fi" style="animation-delay:.3s;border-left-color:${r.clr}"><div class="rcard-label" style="color:${r.clr}">Physical Manifestation</div><div class="rcard-text">${r.bod}</div></div>
+    <div class="nqh-card fi" style="animation-delay:.35s"><div class="rcard-label" style="color:var(--accent)">How NQH&trade; Rewires This Pattern</div><div class="rcard-text">${r.nqh}</div></div>
+    <div class="cta-box fi" style="animation-delay:.4s">
+      <h3>Your type isn&rsquo;t a life sentence</h3>
+      <p>The NQH Foundation Masterclass (&pound;96) includes specific protocols for each nervous system type. Experience the shift firsthand.</p>
+      <a href="https://nqhmasterclass.miindtraa.com" target="_blank"><button class="btn btn-orange">Join the Masterclass &mdash; &#8377;96 &rarr;</button></a>
+    </div>
+    <div class="btn-row fi" style="animation-delay:.45s">
+      <a href="https://instagram.com/miindtraa" target="_blank" class="btn-sec">Follow @miindtraa</a>
+      <button class="btn-sec" onclick="restart()">Retake Test</button>
+    </div>
+    <div class="res-footer fi" style="animation-delay:.5s">
+      <p>&copy; Miindtraa Global | Dr. Amaey A. Parekh &amp; Pankaj Nikam<br>Neurochakra Quantum Healing&trade; | www.miindtraa.com</p>
+    </div>`;
+  go('result');
+}
+
+function restart(){cq=0;ans=[];lk=false;go('intro')}
+</script>
+</body>
+</html>

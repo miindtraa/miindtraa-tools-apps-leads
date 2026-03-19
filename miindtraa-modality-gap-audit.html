@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healer's Modality Gap Audit | Miindtraa NQH™</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--font:'Sora',sans-serif;--bg:#F8F7FF;--white:#FFF;--dark:#1A1A2E;--grey:#6B7280;--border:#E0D8F0;
+--purple:#6B2FA0;--purple2:#4A1D73;--orange:#E67E22;--green:#10B981;--red:#EF4444;--amber:#F59E0B}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--dark);-webkit-font-smoothing:antialiased}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes barGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.fu{animation:fadeUp .5s ease forwards;opacity:0}
+
+.screen{display:none;min-height:100vh}.screen.active{display:flex;flex-direction:column}
+
+/* INTRO */
+.intro{background:linear-gradient(145deg,var(--dark),var(--purple2));justify-content:center;align-items:center;text-align:center;padding:32px 24px}
+.intro-wrap{max-width:500px}
+.brand{font-size:11px;letter-spacing:4px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:20px}
+.title{font-size:32px;font-weight:800;color:#fff;line-height:1.2;margin-bottom:12px}
+.title em{font-style:normal;color:var(--orange)}
+.sub{font-size:15px;color:rgba(255,255,255,.65);line-height:1.65;margin-bottom:28px}
+.dims-preview{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:32px}
+.dim-chip{background:rgba(255,255,255,.07);border-radius:10px;padding:12px 8px;text-align:center}
+.dim-chip-icon{font-size:22px;display:block;margin-bottom:2px}
+.dim-chip-name{font-size:10px;color:rgba(255,255,255,.6);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:50px;padding:16px 40px;font-size:16px;font-weight:700;font-family:var(--font);cursor:pointer;transition:all .3s}
+.btn-main{background:var(--orange);color:#fff;box-shadow:0 6px 24px rgba(230,126,34,.3)}
+.btn-main:hover{transform:translateY(-2px)}
+.btn-purple{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;box-shadow:0 6px 24px rgba(107,47,160,.3)}
+.copy{font-size:11px;color:rgba(255,255,255,.25);margin-top:24px;line-height:1.7}
+
+/* AUDIT */
+.audit{background:var(--bg)}
+.audit-header{background:var(--purple);padding:14px 20px;text-align:center}
+.audit-header span{font-size:12px;color:#fff;font-weight:600;letter-spacing:1px}
+.audit-body{max-width:600px;margin:0 auto;padding:20px 16px 40px}
+.step-title{font-size:20px;font-weight:800;margin-bottom:8px}
+.step-sub{font-size:14px;color:var(--grey);margin-bottom:16px;line-height:1.5}
+
+.mod-input{display:flex;gap:8px;margin-bottom:8px;align-items:center}
+.mod-input input{flex:1;padding:12px 14px;border-radius:10px;border:2px solid var(--border);font-size:14px;font-family:var(--font);outline:none;transition:border .2s}
+.mod-input input:focus{border-color:var(--purple)}
+.mod-remove{background:none;border:none;font-size:20px;color:#ccc;cursor:pointer;padding:0 4px}
+.add-btn{width:100%;background:none;border:2px dashed var(--border);border-radius:10px;padding:10px;color:var(--purple);font-family:var(--font);font-size:13px;font-weight:600;cursor:pointer;margin-bottom:24px;transition:all .2s}
+.add-btn:hover{border-color:var(--purple);background:rgba(107,47,160,.04)}
+
+.dim-card{background:var(--white);border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 1px 6px rgba(0,0,0,.04);border:1px solid var(--border)}
+.dim-head{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.dim-head-icon{font-size:20px}
+.dim-head-name{font-size:15px;font-weight:700}
+.dim-desc{font-size:12px;color:var(--grey);line-height:1.4;margin-bottom:12px}
+.score-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.score-label{font-size:12px;font-weight:600;min-width:90px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.score-btns{display:flex;gap:3px}
+.score-btn{width:34px;height:34px;border-radius:8px;border:none;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;font-family:var(--font);background:#f0e8f8;color:var(--purple)}
+.score-btn.active{background:var(--purple);color:#fff}
+
+.submit-btn{width:100%;margin-top:16px}
+.submit-btn:disabled{opacity:.4;cursor:default;transform:none}
+
+/* RESULTS */
+.results{background:var(--bg)}
+.res-hero{background:var(--purple);padding:28px 20px;text-align:center}
+.res-pct{font-size:56px;font-weight:800;margin-bottom:4px}
+.res-pct-label{font-size:14px;color:rgba(255,255,255,.7);margin-bottom:4px}
+.res-status{font-size:15px;font-weight:600;padding:6px 16px;border-radius:50px;display:inline-block}
+
+.res-body{max-width:600px;margin:0 auto;padding:20px 16px 40px}
+.gap-card{background:var(--white);border-radius:14px;padding:16px;margin-bottom:10px;box-shadow:0 1px 6px rgba(0,0,0,.04)}
+.gap-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.gap-name{font-size:13px;font-weight:700}
+.gap-scores{font-size:12px;color:var(--grey)}
+.gap-bars{display:flex;gap:4px;height:20px;border-radius:6px;overflow:hidden;background:#f3f0fa}
+.gap-fill{height:100%;border-radius:6px 0 0 6px;transition:width .8s ease;min-width:2px}
+.gap-remain{flex:1;display:flex;align-items:center;padding-left:8px}
+.gap-remain span{font-size:11px;font-weight:700;color:var(--purple)}
+
+.nqh-toggle{width:100%;background:var(--purple);color:#fff;border:none;border-radius:12px;padding:14px;font-size:14px;font-weight:700;font-family:var(--font);cursor:pointer;margin:16px 0}
+.nqh-detail{display:none;margin-bottom:20px}
+.nqh-detail.show{display:block}
+.nqh-item{background:var(--white);border-left:4px solid var(--purple);border-radius:0 12px 12px 0;padding:14px;margin-bottom:8px}
+.nqh-item h4{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:4px}
+.nqh-item p{font-size:13px;color:#555;line-height:1.5}
+
+.cta-block{background:linear-gradient(145deg,var(--purple),var(--dark));border-radius:18px;padding:28px 20px;text-align:center;margin:20px 0}
+.cta-block h3{color:#fff;font-size:18px;font-weight:700;margin-bottom:6px}
+.cta-block p{color:rgba(255,255,255,.7);font-size:13px;margin-bottom:16px;line-height:1.5}
+.cta-block a{color:#fff;text-decoration:none}
+
+.btn-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.btn-sec{background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:10px 16px;font-size:13px;font-family:var(--font);font-weight:600;color:var(--purple);cursor:pointer;text-decoration:none;transition:all .2s}
+.btn-sec:hover{border-color:var(--purple)}
+.footer{text-align:center;padding:16px 0;border-top:1px solid var(--border);font-size:11px;color:rgba(0,0,0,.3);line-height:1.7}
+
+@media(max-width:480px){.title{font-size:26px}.dims-preview{grid-template-columns:repeat(2,1fr)}.score-btn{width:30px;height:30px;font-size:12px}}
+</style>
+</head>
+<body>
+
+<div id="intro" class="screen intro active">
+<div class="intro-wrap fu">
+  <div class="brand">Miindtraa &bull; NQH&trade;</div>
+  <h1 class="title">The Healer&rsquo;s<br>Modality <em>Gap Audit</em></h1>
+  <p class="sub">Score your current healing toolkit across 6 critical dimensions. See exactly where the gaps are &mdash; and what&rsquo;s missing.</p>
+  <div class="dims-preview">
+    <div class="dim-chip"><span class="dim-chip-icon">&#129504;</span><span class="dim-chip-name">Neuro</span></div>
+    <div class="dim-chip"><span class="dim-chip-icon">&#9889;</span><span class="dim-chip-name">Energy</span></div>
+    <div class="dim-chip"><span class="dim-chip-icon">&#128151;</span><span class="dim-chip-name">Emotion</span></div>
+    <div class="dim-chip"><span class="dim-chip-icon">&#128273;</span><span class="dim-chip-name">Belief</span></div>
+    <div class="dim-chip"><span class="dim-chip-icon">&#127775;</span><span class="dim-chip-name">Future</span></div>
+    <div class="dim-chip"><span class="dim-chip-icon">&#128300;</span><span class="dim-chip-name">Science</span></div>
+  </div>
+  <button class="btn btn-main" onclick="go('audit')">Audit My Toolkit &rarr;</button>
+  <p class="copy">For Healers, Therapists, Coaches &amp; Practitioners<br>&copy; Miindtraa Global | Dr. Amaey A. Parekh &amp; Pankaj Nikam</p>
+</div>
+</div>
+
+<div id="audit" class="screen audit">
+<div class="audit-header"><span>HEALER&rsquo;S MODALITY GAP AUDIT</span></div>
+<div class="audit-body" id="auditBody"></div>
+</div>
+
+<div id="results" class="screen results">
+<div class="res-hero" id="resHero"></div>
+<div class="res-body" id="resBody"></div>
+</div>
+
+<script>
+const DIMS=[
+{id:"neuro",nm:"Neurological Foundation",icon:"\uD83E\uDDE0",
+  desc:"Does it address brain, neural pathways, nervous system regulation, and subconscious reprogramming?",
+  why:"Lasting healing requires neurological rewiring. Without it, old pathways reassert and results are temporary.",
+  nqh:"Flow Frequency Tuning\u2122 uses brainwave modulation (Beta\u2192Alpha/Theta). AQMP\u2122 rewires subconscious beliefs at the neural level. Dynamic Brain Mapping\u2122 traces chakra-belief-brain connections."},
+{id:"energy",nm:"Energetic Precision",icon:"\u26A1",
+  desc:"Can you identify WHICH chakra is affected, its state, and select a targeted protocol?",
+  why:"Generic energy balancing is like painkillers without diagnosis. Precision = faster, deeper results.",
+  nqh:"NQH\u2019s 5-Step Neurochakra Mapping identifies the EXACT chakra, its state, emotional signature, and linked belief before selecting technique."},
+{id:"emotion",nm:"Emotional Processing",icon:"\uD83D\uDC97",
+  desc:"Does it release stored emotions at their energetic root \u2014 not just talking about them?",
+  why:"Understanding WHY you\u2019re angry doesn\u2019t release the anger from where it\u2019s stored in the body.",
+  nqh:"ERT\u2122 releases stored emotions at their energetic origin. ERT 2.0\u2122 adds Shadow Trigger Mapping. Inner Light Healing\u2122 addresses inner child and shadow integration."},
+{id:"belief",nm:"Belief Reprogramming",icon:"\uD83D\uDD11",
+  desc:"Can you identify the core belief AND reprogram it at the neurological AND energetic level?",
+  why:"Every pattern is sustained by a hidden belief. Without changing it, the pattern regenerates.",
+  nqh:"AQMP\u2122 rewires beliefs at the neurological AND energetic level simultaneously. Reality Sculpting\u2122 installs new identity patterns in the quantum field."},
+{id:"future",nm:"Future Alignment",icon:"\u2B50",
+  desc:"Does it include structured techniques for anchoring future identity and aligning the energy field?",
+  why:"Healing the past is half the work. Without programming the future self, clients default to old identity.",
+  nqh:"Quantum Visioning\u2122, Reality Sculpting\u2122, and Goal Alignment Protocol\u2122 actively programme the future self with energetic anchoring."},
+{id:"science",nm:"Scientific Credibility",icon:"\uD83D\uDD2C",
+  desc:"Can you explain HOW and WHY it works using neuroscience? Is there a structured, repeatable protocol?",
+  why:"The healing industry\u2019s biggest credibility gap. Skeptical clients need logic. Structure = consistency.",
+  nqh:"Every NQH technique maps to neuroscience (neuroplasticity, vagal tone, brainwave states). IPHM accredited. 16 structured, repeatable techniques."}
+];
+
+let mods=[{name:"",scores:{}}];
+let nqhOpen=false;
+
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);if(id==='audit')renderAudit()}
+
+function renderAudit(){
+  const el=document.getElementById('auditBody');
+  el.innerHTML=`
+    <h2 class="step-title fu">Your Modalities</h2>
+    <p class="step-sub fu" style="animation-delay:.05s">Enter the healing modalities you&rsquo;ve trained in:</p>
+    <div id="modInputs"></div>
+    <button class="add-btn" id="addBtn" onclick="addMod()">+ Add Another Modality</button>
+    <h2 class="step-title fu" style="animation-delay:.1s">Score Each Dimension</h2>
+    <p class="step-sub fu" style="animation-delay:.12s">Rate each modality from 1 (not covered) to 5 (deeply covered):</p>
+    <div id="dimCards"></div>
+    <button class="btn btn-main submit-btn" id="submitBtn" onclick="showResults()" disabled>See My Gap Analysis &rarr;</button>`;
+  renderModInputs();
+  renderDimCards();
+}
+
+function renderModInputs(){
+  const el=document.getElementById('modInputs');
+  el.innerHTML='';
+  mods.forEach((m,i)=>{
+    const d=document.createElement('div');d.className='mod-input';
+    d.innerHTML=`<input type="text" placeholder="Modality ${i+1} (e.g., Reiki Level 2)" value="${m.name}" oninput="updateModName(${i},this.value)">${mods.length>1?`<button class="mod-remove" onclick="removeMod(${i})">&times;</button>`:''}`;
+    el.appendChild(d);
+  });
+  document.getElementById('addBtn').style.display=mods.length>=5?'none':'block';
+  renderDimCards();
+}
+
+function addMod(){if(mods.length<5){mods.push({name:"",scores:{}});renderModInputs()}}
+function removeMod(i){if(mods.length>1){mods.splice(i,1);renderModInputs()}}
+function updateModName(i,v){mods[i].name=v;renderDimCards();checkComplete()}
+
+function renderDimCards(){
+  const el=document.getElementById('dimCards');if(!el)return;
+  el.innerHTML='';
+  DIMS.forEach(dim=>{
+    const card=document.createElement('div');card.className='dim-card';
+    let rows='';
+    mods.forEach((m,mi)=>{
+      if(!m.name.trim())return;
+      let btns='';
+      for(let s=1;s<=5;s++){
+        btns+=`<button class="score-btn ${m.scores[dim.id]===s?'active':''}" onclick="setScore(${mi},'${dim.id}',${s})">${s}</button>`;
+      }
+      rows+=`<div class="score-row"><span class="score-label">${m.name.substring(0,12)}${m.name.length>12?'\u2026':''}</span><div class="score-btns">${btns}</div></div>`;
+    });
+    card.innerHTML=`<div class="dim-head"><span class="dim-head-icon">${dim.icon}</span><span class="dim-head-name">${dim.nm}</span></div><div class="dim-desc">${dim.desc}</div>${rows||'<div style="font-size:12px;color:#bbb;font-style:italic">Enter a modality name above to score</div>'}`;
+    el.appendChild(card);
+  });
+}
+
+function setScore(mi,did,s){mods[mi].scores[did]=s;renderDimCards();checkComplete()}
+
+function checkComplete(){
+  const named=mods.filter(m=>m.name.trim());
+  const complete=named.length>0&&named.every(m=>DIMS.every(d=>m.scores[d.id]));
+  document.getElementById('submitBtn').disabled=!complete;
+}
+
+function showResults(){
+  const bestScores={};
+  DIMS.forEach(d=>{bestScores[d.id]=Math.max(...mods.map(m=>m.scores[d.id]||0))});
+  const total=DIMS.reduce((s,d)=>s+bestScores[d.id],0);
+  const pct=Math.round((total/30)*100);
+  const clr=pct>=80?'#10B981':pct>=50?'#F59E0B':'#EF4444';
+  const status=pct>=80?'Strong Toolkit':pct>=50?'Significant Gaps':'Major Gaps Detected';
+
+  document.getElementById('resHero').innerHTML=`
+    <div class="res-pct" style="color:${clr}">${pct}%</div>
+    <div class="res-pct-label" style="color:rgba(255,255,255,.7)">Healing Toolkit Completeness</div>
+    <div class="res-status" style="background:${clr}22;color:${clr}">${status}</div>`;
+
+  const gaps=DIMS.map(d=>({...d,best:bestScores[d.id],gap:5-bestScores[d.id]})).sort((a,b)=>b.gap-a.gap);
+  const bigGaps=gaps.filter(g=>g.gap>=2);
+
+  let gapCards=gaps.map((g,i)=>{
+    const gClr=g.best>=4?'#10B981':g.best>=3?'#F59E0B':'#EF4444';
+    return `<div class="gap-card fu" style="animation-delay:${.1+i*.05}s">
+      <div class="gap-header"><span class="gap-name">${g.icon} ${g.nm}</span><span class="gap-scores">You: ${g.best}/5 | NQH: 5/5</span></div>
+      <div class="gap-bars"><div class="gap-fill" style="width:${(g.best/5)*100}%;background:${gClr}"></div>
+      <div class="gap-remain">${g.gap>0?`<span>GAP: ${g.gap}</span>`:''}</div></div></div>`;
+  }).join('');
+
+  let bigGapHtml='';
+  if(bigGaps.length>0){
+    bigGapHtml=`<div style="background:#FFF3E0;border-left:4px solid var(--orange);border-radius:0 12px 12px 0;padding:16px;margin:16px 0">
+    <h3 style="font-size:14px;font-weight:700;color:var(--orange);margin-bottom:8px">Your Biggest Gaps</h3>
+    ${bigGaps.map(g=>`<div style="margin-bottom:8px"><strong style="font-size:13px">${g.icon} ${g.nm} (Gap: ${g.gap})</strong><p style="font-size:12px;color:#666;line-height:1.4;margin:2px 0 0">${g.why}</p></div>`).join('')}</div>`;
+  }
+
+  let nqhItems=DIMS.map(d=>`<div class="nqh-item"><h4>${d.icon} ${d.nm} \u2014 NQH: 5/5</h4><p>${d.nqh}</p></div>`).join('');
+
+  document.getElementById('resBody').innerHTML=`
+    ${gapCards}${bigGapHtml}
+    <button class="nqh-toggle" onclick="toggleNqh()">Show How NQH\u2122 Fills Every Gap \u2193</button>
+    <div class="nqh-detail" id="nqhDetail">${nqhItems}</div>
+    <div class="cta-block">
+      <h3>Fill Every Gap in One System</h3>
+      <p>NQH scores 5/5 across all 6 dimensions. Experience it in the Foundation Masterclass.</p>
+      <a href="https://nqhmasterclass.miindtraa.com" target="_blank"><button class="btn btn-main">Masterclass \u2014 \u20B996 &rarr;</button></a>
+    </div>
+    <div class="btn-row">
+      <a href="https://instagram.com/miindtraa" target="_blank" class="btn-sec">Follow @miindtraa</a>
+      <button class="btn-sec" onclick="restart()">Retake Audit</button>
+    </div>
+    <div class="footer">&copy; Miindtraa Global | Dr. Amaey A. Parekh &amp; Pankaj Nikam<br>Neurochakra Quantum Healing\u2122 | www.miindtraa.com</div>`;
+  go('results');
+}
+
+function toggleNqh(){nqhOpen=!nqhOpen;document.getElementById('nqhDetail').classList.toggle('show',nqhOpen);document.querySelector('.nqh-toggle').textContent=nqhOpen?'Hide NQH\u2122 Details \u2191':'Show How NQH\u2122 Fills Every Gap \u2193'}
+
+function restart(){mods=[{name:"",scores:{}}];nqhOpen=false;go('intro')}
+</script>
+</body>
+</html>

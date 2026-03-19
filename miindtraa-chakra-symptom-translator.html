@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chakra-Body Symptom Translator | Miindtraa NQH™</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--font:'Plus Jakarta Sans',sans-serif;--bg:#FAFBFE;--white:#FFF;--dark:#1A1A2E;--grey:#6B7280;--border:#E5E7EB;--purple:#6B2FA0;--orange:#E67E22;
+--root:#E74C3C;--sacral:#E67E22;--solar:#F1C40F;--heart:#27AE60;--throat:#3498DB;--third:#8E44AD;--crown:#9B59B6;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--dark);-webkit-font-smoothing:antialiased}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fu{animation:fadeUp .4s ease forwards;opacity:0}
+
+.header{background:linear-gradient(135deg,var(--dark),var(--purple));padding:28px 20px;text-align:center}
+.hbrand{font-size:11px;letter-spacing:3px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:12px}
+.htitle{font-size:28px;font-weight:800;color:#fff;margin-bottom:6px}
+.htitle em{font-style:normal;color:var(--orange)}
+.hsub{font-size:14px;color:rgba(255,255,255,.6);line-height:1.5}
+
+.nav{display:flex;overflow-x:auto;gap:0;background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;-webkit-overflow-scrolling:touch}
+.nav::-webkit-scrollbar{display:none}
+.nav-btn{flex:1;min-width:0;padding:14px 8px;text-align:center;background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;transition:all .2s;font-family:var(--font)}
+.nav-btn.active{border-bottom-color:var(--active-color,var(--purple));background:rgba(107,47,160,.04)}
+.nav-icon{font-size:20px;display:block;margin-bottom:2px}
+.nav-name{font-size:10px;font-weight:700;letter-spacing:.5px;color:var(--grey)}
+.nav-btn.active .nav-name{color:var(--dark)}
+
+.content{max-width:640px;margin:0 auto;padding:20px 16px 40px}
+.chakra-panel{display:none}.chakra-panel.active{display:block}
+
+.chakra-title{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.ct-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0}
+.ct-name{font-size:22px;font-weight:800}
+.ct-meta{font-size:13px;color:var(--grey)}
+
+.section{background:var(--white);border-radius:14px;padding:18px;margin-bottom:12px;box-shadow:0 1px 6px rgba(0,0,0,.04);border:1px solid var(--border)}
+.sec-header{display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer}
+.sec-icon{font-size:18px}
+.sec-title{font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.sec-body{font-size:14.5px;line-height:1.7;color:#444}
+.sec-body .tag{display:inline-block;background:rgba(107,47,160,.08);color:var(--purple);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;margin:3px 2px}
+
+.nqh-section{background:linear-gradient(135deg,rgba(107,47,160,.06),rgba(230,126,34,.04));border:1px solid rgba(107,47,160,.15)}
+.nqh-section .sec-title{color:var(--purple)}
+
+.cta-bar{background:linear-gradient(135deg,var(--purple),var(--dark));border-radius:16px;padding:24px;text-align:center;margin-top:20px}
+.cta-bar h3{color:#fff;font-size:18px;font-weight:700;margin-bottom:6px}
+.cta-bar p{color:rgba(255,255,255,.7);font-size:13px;margin-bottom:14px;line-height:1.5}
+.cta-btn{display:inline-block;background:var(--orange);color:#fff;border:none;border-radius:50px;padding:14px 32px;font-size:15px;font-weight:700;font-family:var(--font);cursor:pointer;text-decoration:none;box-shadow:0 4px 20px rgba(230,126,34,.3)}
+.cta-btn:hover{transform:translateY(-2px)}
+
+.footer{text-align:center;padding:20px;font-size:11px;color:rgba(0,0,0,.3);line-height:1.7}
+
+@media(max-width:480px){.htitle{font-size:22px}.nav-btn{padding:10px 6px}.nav-icon{font-size:16px}.nav-name{font-size:9px}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="hbrand">Miindtraa &bull; NQH&trade;</div>
+  <h1 class="htitle">Chakra-Body <em>Symptom Translator</em></h1>
+  <p class="hsub">Tap a chakra to decode what your body is telling you about your emotional and energetic health.</p>
+</div>
+
+<nav class="nav" id="nav"></nav>
+<div class="content" id="content"></div>
+
+<script>
+const chakras=[
+{id:"root",nm:"Root",skt:"Muladhara",loc:"Base of spine",el:"Earth",clr:"#E74C3C",icon:"\uD83D\uDD34",
+  symptoms:["Lower back pain","Leg and feet issues (sciatica, circulation)","Immune disorders","Weight fluctuation","Bone and skeletal issues","Feeling physically ungrounded"],
+  emotions:["Fear","Insecurity","Anxiety","Survival-mode thinking","Fight/flight/freeze activation"],
+  client:["\u201CI feel like the ground is slipping beneath me\u201D","\u201CI\u2019m always worried about money\u201D","\u201CI don\u2019t feel safe\u201D","\u201CI\u2019m constantly in survival mode\u201D"],
+  beliefs:["\u201CI am not safe\u201D","\u201CThere isn\u2019t enough for me\u201D","\u201CI don\u2019t belong here\u201D","\u201CThe world is dangerous\u201D"],
+  nqh:["Flow Frequency Tuning\u2122 \u2014 nervous system regulation","ERT\u2122 \u2014 fear release at energetic origin","Reality Sculpting\u2122 \u2014 safety installation","Energy Pathway Tuning\u2122 \u2014 root stabilisation"]},
+{id:"sacral",nm:"Sacral",skt:"Svadhisthana",loc:"Lower abdomen",el:"Water",clr:"#E67E22",icon:"\uD83D\uDFE0",
+  symptoms:["Reproductive issues","Lower abdominal pain/stiffness","Hip problems","Urinary tract infections","Hormonal imbalances"],
+  emotions:["Guilt","Shame about emotions/body","Emotional numbness","Fear of intimacy","Suppressed creativity"],
+  client:["\u201CI feel guilty for wanting more\u201D","\u201CI can\u2019t trust my feelings\u201D","\u201CIt\u2019s hard to enjoy life\u201D","\u201CI lose myself in relationships\u201D"],
+  beliefs:["\u201CI don\u2019t deserve pleasure\u201D","\u201CMy feelings are wrong\u201D","\u201CIt\u2019s not safe to express needs\u201D","\u201CEnjoyment leads to punishment\u201D"],
+  nqh:["ERT\u2122 \u2014 guilt and shame release","Energy Pathway Tuning\u2122 \u2014 sacral flow restoration","Inner Light Healing\u2122 \u2014 creative reconnection","Flow Frequency Tuning\u2122 \u2014 emotional thaw"]},
+{id:"solar",nm:"Solar Plexus",skt:"Manipura",loc:"Upper abdomen",el:"Fire",clr:"#F1C40F",icon:"\uD83D\uDFE1",
+  symptoms:["Digestive issues (IBS, ulcers, acid reflux)","Liver and pancreas problems","Chronic fatigue","Blood sugar imbalance","Mid-back pain"],
+  emotions:["Shame","Low self-worth","Powerlessness","Anger and frustration","Fear of judgment or failure"],
+  client:["\u201CNo matter what I do, it\u2019s never enough\u201D","\u201CI\u2019m scared to put myself out there\u201D","\u201CI don\u2019t trust my own decisions\u201D","\u201CI feel invisible\u201D"],
+  beliefs:["\u201CI am not good enough\u201D","\u201CI must prove my worth\u201D","\u201CIf I fail, I lose love\u201D","\u201CIt\u2019s safer to stay small\u201D"],
+  nqh:["ERT\u2122 + Dynamic Brain Mapping\u2122 \u2014 shame release","AQMP\u2122 \u2014 self-worth rewiring","Light Flow Activation\u2122 \u2014 confidence anchoring","Goal Alignment Protocol\u2122"]},
+{id:"heart",nm:"Heart",skt:"Anahata",loc:"Centre of chest",el:"Air",clr:"#27AE60",icon:"\uD83D\uDC9A",
+  symptoms:["Heart and circulation issues","Chest tightness","Lung problems (asthma)","Upper back and shoulder tension","Immune weakness"],
+  emotions:["Grief","Sadness","Fear of betrayal/abandonment","Loneliness","Bitterness and resentment"],
+  client:["\u201CI don\u2019t trust people anymore\u201D","\u201CI always give more than I receive\u201D","\u201CLove has only hurt me\u201D","\u201CI can\u2019t forgive them\u201D"],
+  beliefs:["\u201CLove is painful\u201D","\u201CI must protect myself from getting hurt\u201D","\u201CI am unworthy of love\u201D","\u201CIt\u2019s safer to close my heart\u201D"],
+  nqh:["ERT\u2122 \u2014 grief and betrayal release","Energy Reconciliation\u2122 \u2014 relational wound healing","Harmony Protocol\u2122 \u2014 love-trust restoration","Inner Light Healing\u2122"]},
+{id:"throat",nm:"Throat",skt:"Vishuddha",loc:"Throat/neck",el:"Ether",clr:"#3498DB",icon:"\uD83D\uDD35",
+  symptoms:["Throat pain, thyroid issues","Hoarseness, frequent sore throats","Jaw tension and teeth grinding","Neck and shoulder stiffness","Speech difficulties"],
+  emotions:["Fear of judgment/rejection","Suppressed expression","Feeling unheard","Creative blocks"],
+  client:["\u201CI can never find the right words\u201D","\u201CI\u2019m scared to speak my mind\u201D","\u201CPeople don\u2019t listen to me\u201D","\u201CI freeze when I try to express myself\u201D"],
+  beliefs:["\u201CMy voice doesn\u2019t matter\u201D","\u201CSpeaking truth leads to rejection\u201D","\u201CIt\u2019s safer to stay silent\u201D","\u201CIf I express myself, I\u2019ll be punished\u201D"],
+  nqh:["ERT\u2122 \u2014 expression fear release","AQMP\u2122 \u2014 voice-worth rewiring","Energy Pathway Tuning\u2122 \u2014 throat flow","Flow Frequency Tuning\u2122 \u2014 freeze regulation"]},
+{id:"third",nm:"Third Eye",skt:"Ajna",loc:"Between eyebrows",el:"Light",clr:"#8E44AD",icon:"\uD83D\uDFE3",
+  symptoms:["Headaches and migraines","Vision problems","Sinus issues","Hormonal imbalance (pituitary)","Sleep disturbances"],
+  emotions:["Confusion","Self-doubt","Mental overwhelm","Fear of the unknown","Disconnection from guidance"],
+  client:["\u201CI don\u2019t know what to believe anymore\u201D","\u201CI keep doubting myself\u201D","\u201CI can\u2019t see my future clearly\u201D","\u201CI feel mentally stuck and foggy\u201D"],
+  beliefs:["\u201CI can\u2019t trust myself\u201D","\u201CI need proof before I can believe\u201D","\u201CThe world is chaotic\u201D","\u201CI\u2019m disconnected from my purpose\u201D"],
+  nqh:["AQMP\u2122 \u2014 self-trust rewiring","Flow Frequency Tuning\u2122 \u2014 Alpha/Theta access","Quantum Visioning\u2122 \u2014 clarity restoration","Energy Blueprint Meditation\u2122"]},
+{id:"crown",nm:"Crown",skt:"Sahasrara",loc:"Top of head",el:"Consciousness",clr:"#9B59B6",icon:"\uD83D\uDC51",
+  symptoms:["Migraines and crown tension","Nervous system disorders","Deep sleep disturbances","Light/sound sensitivity","Cognitive fog"],
+  emotions:["Spiritual disconnection","Purposelessness","Existential anxiety","Lack of trust in life","Overattachment to material outcomes"],
+  client:["\u201CI feel lost, like I have no purpose\u201D","\u201CLife feels meaningless\u201D","\u201CI don\u2019t feel connected to anything greater\u201D","\u201CI want to trust but feel disconnected\u201D"],
+  beliefs:["\u201CI am alone in the universe\u201D","\u201CThere\u2019s no higher meaning\u201D","\u201CI must control everything\u201D","\u201COnly what I can see is real\u201D"],
+  nqh:["Light Flow Activation\u2122 \u2014 crown-root reconnection","Energy Blueprint Meditation\u2122 \u2014 soul pattern restoration","Harmony Protocol\u2122 \u2014 trust-surrender healing","ERT\u2122 \u2014 existential fear release"]}
+];
+
+let active=0;
+
+function buildNav(){
+  const nav=document.getElementById('nav');
+  chakras.forEach((c,i)=>{
+    const btn=document.createElement('button');
+    btn.className='nav-btn'+(i===0?' active':'');
+    btn.style.setProperty('--active-color',c.clr);
+    btn.innerHTML=`<span class="nav-icon">${c.icon}</span><span class="nav-name">${c.nm}</span>`;
+    btn.onclick=()=>switchTo(i);
+    nav.appendChild(btn);
+  });
+}
+
+function switchTo(i){
+  active=i;
+  document.querySelectorAll('.nav-btn').forEach((b,j)=>{
+    b.classList.toggle('active',j===i);
+    b.style.setProperty('--active-color',chakras[j].clr);
+  });
+  renderPanel();
+}
+
+function tags(arr){return arr.map(a=>`<span class="tag">${a}</span>`).join(' ')}
+function list(arr){return arr.map(a=>`<div style="margin-bottom:4px">\u2022 ${a}</div>`).join('')}
+
+function renderPanel(){
+  const c=chakras[active];
+  const el=document.getElementById('content');
+  el.innerHTML=`
+    <div class="fu" style="animation-delay:.05s">
+      <div class="chakra-title"><div class="ct-dot" style="background:${c.clr}"></div><div><div class="ct-name" style="color:${c.clr}">${c.nm} Chakra</div><div class="ct-meta">${c.skt} &bull; ${c.loc} &bull; Element: ${c.el}</div></div></div>
+    </div>
+    <div class="section fu" style="animation-delay:.1s"><div class="sec-header"><span class="sec-icon">\uD83E\uDE7A</span><span class="sec-title" style="color:${c.clr}">Physical Symptoms</span></div><div class="sec-body">${tags(c.symptoms)}</div></div>
+    <div class="section fu" style="animation-delay:.15s"><div class="sec-header"><span class="sec-icon">\uD83D\uDCA7</span><span class="sec-title" style="color:${c.clr}">Emotional Signatures</span></div><div class="sec-body">${tags(c.emotions)}</div></div>
+    <div class="section fu" style="animation-delay:.2s"><div class="sec-header"><span class="sec-icon">\uD83D\uDDE3\uFE0F</span><span class="sec-title" style="color:${c.clr}">What Clients Say</span></div><div class="sec-body" style="font-style:italic">${list(c.client)}</div></div>
+    <div class="section fu" style="animation-delay:.25s"><div class="sec-header"><span class="sec-icon">\uD83D\uDD11</span><span class="sec-title" style="color:${c.clr}">Hidden Beliefs</span></div><div class="sec-body" style="font-style:italic">${list(c.beliefs)}</div></div>
+    <div class="section nqh-section fu" style="animation-delay:.3s"><div class="sec-header"><span class="sec-icon">\u2728</span><span class="sec-title">NQH&trade; Techniques</span></div><div class="sec-body">${list(c.nqh)}</div></div>
+    <div class="cta-bar fu" style="animation-delay:.35s">
+      <h3>Learn the Full Protocol</h3>
+      <p>The NQH Foundation Masterclass (\u20B996) teaches you how to decode AND heal these patterns using the complete 4-pillar system.</p>
+      <a href="https://nqhmasterclass.miindtraa.com" target="_blank" class="cta-btn">Masterclass &mdash; \u20B996 &rarr;</a>
+    </div>
+    <div class="footer">&copy; Miindtraa Global | Dr. Amaey A. Parekh &amp; Pankaj Nikam<br>Neurochakra Quantum Healing&trade; | www.miindtraa.com</div>`;
+}
+
+buildNav();renderPanel();
+</script>
+</body>
+</html>
