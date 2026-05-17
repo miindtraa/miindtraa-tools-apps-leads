@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Money Nervous System Audit · Miindtraa</title>
+<meta name="description" content="An 8-question audit to find out which of the 5 nervous-system money patterns is most active in you right now. From the makers of NQH™.">
+<meta property="og:title" content="Money Nervous System Audit · Miindtraa">
+<meta property="og:description" content="An 8-question audit to find out which of the 5 nervous-system money patterns is most active in you right now.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --indigo: #2D1B4E;
+    --indigo-deep: #1A0F33;
+    --indigo-soft: #4A3578;
+    --gold: #C9971C;
+    --gold-soft: #E0B547;
+    --cream: #F5E6C0;
+    --cream-soft: #FAF4E1;
+    --ink: #1A0F33;
+    --paper: #FAF6EC;
+    --muted: rgba(26, 15, 51, 0.62);
+    --line: rgba(26, 15, 51, 0.12);
+    --line-gold: rgba(201, 151, 28, 0.35);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201, 151, 28, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 100% 100%, rgba(45, 27, 78, 0.04) 0%, transparent 50%),
+      var(--paper);
+    min-height: 100vh;
+  }
+
+  /* subtle grain */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.35;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.10 0 0 0 0 0.30 0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .shell {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 28px 22px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ───────── HEADER ───────── */
+  header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    color: var(--indigo);
+  }
+  .brand-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 4px rgba(201, 151, 28, 0.15);
+  }
+  .eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 6px 14px;
+    border: 1px solid var(--line-gold);
+    border-radius: 999px;
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: clamp(30px, 6.5vw, 44px);
+    line-height: 1.12;
+    letter-spacing: -0.5px;
+    color: var(--indigo);
+    margin-bottom: 14px;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .lede {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* ───────── INTRO CARD ───────── */
+  .intro-card {
+    background: linear-gradient(180deg, #FFFFFF 0%, var(--cream-soft) 100%);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 26px 24px;
+    margin-bottom: 28px;
+    box-shadow: 0 1px 3px rgba(26, 15, 51, 0.04);
+    position: relative;
+  }
+  .intro-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 22px; right: 22px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .intro-meta {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .intro-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--indigo) 0%, var(--indigo-soft) 100%);
+    color: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .intro-meta h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--indigo);
+    margin-bottom: 2px;
+  }
+  .intro-meta p {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .intro-card .body-text {
+    font-size: 15.5px;
+    color: var(--ink);
+    line-height: 1.7;
+  }
+  .intro-card .body-text p + p { margin-top: 12px; }
+  .intro-card .body-text strong {
+    color: var(--indigo);
+    font-weight: 600;
+  }
+
+  /* ───────── PROGRESS ───────── */
+  .progress-wrap {
+    margin-bottom: 22px;
+  }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .progress-meta span:last-child { color: var(--gold); font-weight: 600; }
+  .progress-bar {
+    height: 4px;
+    background: var(--line);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-soft) 100%);
+    border-radius: 99px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ───────── QUESTION ───────── */
+  .question-card {
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 28px 24px;
+    box-shadow: 0 4px 18px rgba(26, 15, 51, 0.05);
+    animation: fadeUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .q-number {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+  .q-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 4.2vw, 24px);
+    font-weight: 500;
+    color: var(--indigo);
+    line-height: 1.35;
+    margin-bottom: 22px;
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .option {
+    text-align: left;
+    background: var(--cream-soft);
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.18s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    line-height: 1.45;
+    width: 100%;
+  }
+  .option:hover {
+    border-color: var(--gold);
+    background: #FFFFFF;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(201, 151, 28, 0.12);
+  }
+  .option:active {
+    transform: translateY(0);
+  }
+  .option-dot {
+    width: 18px; height: 18px;
+    border: 1.5px solid var(--line);
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: all 0.18s ease;
+    position: relative;
+  }
+  .option:hover .option-dot { border-color: var(--gold); }
+  .option.selected {
+    border-color: var(--gold);
+    background: #FFFFFF;
+  }
+  .option.selected .option-dot {
+    border-color: var(--gold);
+    background: var(--gold);
+    box-shadow: 0 0 0 4px rgba(201, 151, 28, 0.18);
+  }
+
+  /* ───────── NAV ───────── */
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 22px;
+    gap: 12px;
+  }
+  .btn-ghost, .btn-primary {
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    border: none;
+    cursor: pointer;
+    padding: 12px 22px;
+    border-radius: 99px;
+    transition: all 0.2s ease;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--muted);
+  }
+  .btn-ghost:hover { color: var(--indigo); }
+  .btn-ghost:disabled { opacity: 0.3; cursor: not-allowed; }
+  .btn-primary {
+    background: var(--indigo);
+    color: var(--cream);
+    box-shadow: 0 4px 14px rgba(45, 27, 78, 0.25);
+  }
+  .btn-primary:hover {
+    background: var(--indigo-deep);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(45, 27, 78, 0.35);
+  }
+  .btn-primary:disabled {
+    background: var(--line);
+    color: var(--muted);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+
+  /* ───────── RESULT ───────── */
+  .result-card {
+    background: linear-gradient(180deg, #FFFFFF 0%, var(--cream-soft) 100%);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 32px 26px;
+    box-shadow: 0 8px 32px rgba(45, 27, 78, 0.08);
+    animation: fadeUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .result-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--indigo-soft), var(--gold));
+  }
+  .result-eyebrow {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .result-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 5.5vw, 34px);
+    font-weight: 600;
+    color: var(--indigo);
+    line-height: 1.15;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .result-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--gold);
+    margin-bottom: 22px;
+  }
+  .result-section {
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--line);
+  }
+  .result-section:last-of-type { border-bottom: none; }
+  .result-section h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--indigo-soft);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .result-section p {
+    font-size: 15.5px;
+    color: var(--ink);
+    line-height: 1.7;
+  }
+  .result-section p + p { margin-top: 10px; }
+  .result-section strong { color: var(--indigo); font-weight: 600; }
+  .result-section em { color: var(--gold); font-style: normal; font-weight: 500; }
+
+  .pattern-list {
+    list-style: none;
+    margin-top: 8px;
+  }
+  .pattern-list li {
+    font-size: 14.5px;
+    color: var(--ink);
+    padding: 8px 0;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.55;
+  }
+  .pattern-list li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 16px;
+    width: 8px; height: 1.5px;
+    background: var(--gold);
+  }
+
+  /* ───────── CTAs ───────── */
+  .cta-section {
+    margin-top: 32px;
+  }
+  .cta-eyebrow {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--indigo);
+    margin-bottom: 4px;
+  }
+  .cta-subhead {
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 22px;
+    letter-spacing: 0.5px;
+  }
+
+  .cta-card {
+    background: #FFFFFF;
+    border: 1.5px solid var(--line);
+    border-radius: 18px;
+    padding: 24px 22px;
+    margin-bottom: 14px;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-card.primary {
+    border-color: var(--gold);
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFFBF0 100%);
+    box-shadow: 0 6px 22px rgba(201, 151, 28, 0.10);
+  }
+  .cta-card.primary::before {
+    content: "RECOMMENDED";
+    position: absolute;
+    top: 14px; right: 18px;
+    font-size: 9.5px;
+    letter-spacing: 1.8px;
+    color: var(--gold);
+    font-weight: 700;
+    background: rgba(201, 151, 28, 0.10);
+    padding: 4px 10px;
+    border-radius: 99px;
+  }
+  .cta-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(45, 27, 78, 0.10);
+  }
+  .cta-tag {
+    font-size: 10.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--indigo-soft);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--indigo);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .cta-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .cta-desc {
+    font-size: 14.5px;
+    color: var(--ink);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .cta-includes {
+    list-style: none;
+    margin-bottom: 18px;
+  }
+  .cta-includes li {
+    font-size: 13.5px;
+    color: var(--ink);
+    padding: 5px 0;
+    padding-left: 22px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .cta-includes li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px 22px;
+    background: var(--indigo);
+    color: var(--cream);
+    text-decoration: none;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 14.5px;
+    letter-spacing: 0.3px;
+    border-radius: 99px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(45, 27, 78, 0.20);
+  }
+  .cta-btn:hover {
+    background: var(--indigo-deep);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(45, 27, 78, 0.30);
+  }
+  .cta-btn.gold {
+    background: var(--gold);
+    color: #FFFFFF;
+    box-shadow: 0 4px 14px rgba(201, 151, 28, 0.30);
+  }
+  .cta-btn.gold:hover {
+    background: var(--gold-soft);
+    box-shadow: 0 6px 18px rgba(201, 151, 28, 0.40);
+  }
+  .cta-btn .arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+  .cta-btn:hover .arrow { transform: translateX(3px); }
+
+  /* ───────── PRACTICE BOX ───────── */
+  .practice-box {
+    background: var(--indigo);
+    color: var(--cream-soft);
+    border-radius: 18px;
+    padding: 26px 24px;
+    margin-top: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  .practice-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 100% 0%, rgba(201, 151, 28, 0.20) 0%, transparent 50%),
+      radial-gradient(circle at 0% 100%, rgba(201, 151, 28, 0.10) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  .practice-box > * { position: relative; z-index: 1; }
+  .practice-eyebrow {
+    font-size: 10.5px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .practice-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 14px;
+  }
+  .practice-steps {
+    list-style: none;
+    counter-reset: step;
+  }
+  .practice-steps li {
+    counter-increment: step;
+    padding: 10px 0 10px 36px;
+    position: relative;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: rgba(245, 230, 192, 0.92);
+    border-bottom: 1px solid rgba(245, 230, 192, 0.10);
+  }
+  .practice-steps li:last-child { border-bottom: none; }
+  .practice-steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0; top: 11px;
+    width: 24px; height: 24px;
+    background: rgba(201, 151, 28, 0.18);
+    color: var(--gold-soft);
+    border: 1px solid rgba(201, 151, 28, 0.30);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .practice-steps li em {
+    font-style: italic;
+    color: var(--gold-soft);
+  }
+
+  /* ───────── RESTART ───────── */
+  .restart {
+    text-align: center;
+    margin-top: 28px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .restart a {
+    color: var(--indigo);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line-gold);
+    padding-bottom: 1px;
+  }
+  .restart a:hover { color: var(--gold); }
+
+  /* ───────── FOOTER ───────── */
+  footer {
+    margin-top: 50px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: var(--indigo);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .footer-meta {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.3px;
+    line-height: 1.6;
+  }
+  .footer-meta a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .footer-disclaimer {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 14px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    font-style: italic;
+    line-height: 1.55;
+    opacity: 0.8;
+  }
+
+  /* ───────── UTILITY ───────── */
+  .hidden { display: none !important; }
+
+  @media (max-width: 480px) {
+    .shell { padding: 22px 16px 60px; }
+    .intro-card, .question-card, .result-card { padding: 22px 18px; }
+    .cta-card { padding: 20px 18px; }
+    .practice-box { padding: 22px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ─────── HEADER ─────── -->
+  <header>
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span>MIINDTRAA</span>
+    </div>
+    <span class="eyebrow">Free · 8 Questions · 3 Minutes</span>
+    <h1>The Money Nervous System <em>Audit</em></h1>
+    <p class="lede">Find out which of the 5 nervous-system money patterns is most active in you right now — and what to do about it.</p>
+  </header>
+
+  <!-- ─────── INTRO + START ─────── -->
+  <section id="intro" class="screen">
+    <div class="intro-card">
+      <div class="intro-meta">
+        <div class="intro-avatar">P</div>
+        <div>
+          <h3>A note from Pankaj</h3>
+          <p>Co-founder, Miindtraa · Co-creator of NQH™</p>
+        </div>
+      </div>
+      <div class="body-text">
+        <p>If you're watching our videos, you already know — most money struggles are not really about strategy. They're about <strong>regulation, identity, and safety.</strong></p>
+        <p>This audit will not fix your money. Eight questions cannot do that.</p>
+        <p>But in three minutes, it can show you <strong>which of the 5 nervous-system money patterns is loudest in your system right now</strong> — so you stop guessing, and start working at the right layer.</p>
+        <p>No email. No signup. Just answer honestly. Your body already knows.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;">
+      <button class="btn-primary" id="startBtn" style="padding: 16px 38px; font-size: 15px;">Begin the Audit →</button>
+    </div>
+  </section>
+
+  <!-- ─────── QUIZ ─────── -->
+  <section id="quiz" class="screen hidden">
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span>Question <span id="qNum">1</span> of 8</span>
+        <span id="qPct">12%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+
+    <div class="question-card" id="questionCard">
+      <!-- injected -->
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-ghost" id="backBtn" disabled>← Back</button>
+      <button class="btn-primary" id="nextBtn" disabled>Next →</button>
+    </div>
+  </section>
+
+  <!-- ─────── RESULT ─────── -->
+  <section id="result" class="screen hidden">
+    <div class="result-card" id="resultCard">
+      <!-- injected -->
+    </div>
+
+    <!-- Practice -->
+    <div class="practice-box">
+      <div class="practice-eyebrow">Try This Now · 2 Minutes</div>
+      <h3 class="practice-title">The Solar Plexus Money Reset</h3>
+      <ol class="practice-steps">
+        <li>Place both hands on your <em>solar plexus</em> — the area above your navel, below your chest.</li>
+        <li>Notice what's there. Tightness, heaviness, numbness, nothing — all of it is data.</li>
+        <li>Inhale slowly through the nose for <em>4 counts</em>. Imagine gentle warmth entering that area.</li>
+        <li>Exhale slowly through the mouth for <em>8 counts</em>. Let the area soften — even a little.</li>
+        <li>Whisper, softly: <em>"I am allowed to earn. I am allowed to keep it."</em></li>
+        <li>Repeat for three rounds. Especially before quoting fees, sending an invoice, or any money conversation.</li>
+      </ol>
+    </div>
+
+    <!-- CTAs -->
+    <div class="cta-section">
+      <p class="cta-eyebrow">Where to go from here</p>
+      <p class="cta-subhead">Two ways forward, depending on where you are.</p>
+
+      <!-- CTA 1: HEALING TRIBE (PRIMARY) -->
+      <div class="cta-card primary">
+        <div class="cta-tag">Stay consistent · State change</div>
+        <h3 class="cta-title">Miindtraa Morning Healing Tribe</h3>
+        <p class="cta-price">₹996 / year — under ₹83 a month</p>
+        <p class="cta-desc">If this audit hit something real, the next step is not another course. It's <strong>consistency</strong>. Every Wednesday, 7:30 AM IST, Dr. Amaey runs a 45-minute live nervous-system reset on Zoom — and one Wednesday a month is dedicated to Wealth (the exact patterns from this audit).</p>
+        <ul class="cta-includes">
+          <li>52 live Wednesday sessions with Dr. Amaey</li>
+          <li>Rotating themes: Health · Wealth · Love · Future · Integration</li>
+          <li>Replays in the Vault if you miss live</li>
+          <li>Private WhatsApp community + monthly micro-challenges</li>
+          <li>Soft access to deeper Mini-Programs when you're ready</li>
+        </ul>
+        <a href="https://exly.live/cle11P" class="cta-btn" target="_blank" rel="noopener">
+          Join the Tribe for ₹996/year <span class="arrow">→</span>
+        </a>
+      </div>
+
+      <!-- CTA 2: WEALTH BLUEPRINT (SECONDARY) -->
+      <div class="cta-card">
+        <div class="cta-tag">Go deep · 4-week intensive</div>
+        <h3 class="cta-title">NQH™ Wealth Blueprint Intensive</h3>
+        <p class="cta-price">For those ready to do the actual rewiring</p>
+        <p class="cta-desc">If your audit result was intense — or if you've been circling the same income ceiling for years — this is the deeper work. We <strong>map your specific money blueprint</strong>, identify which of the 5 patterns is locked into your body, and run the NQH™ protocols to update what your system considers safe.</p>
+        <ul class="cta-includes">
+          <li>4-week structured intensive with live sessions</li>
+          <li>Personal money blueprint mapping</li>
+          <li>NQH™ protocols for each of the 5 patterns</li>
+          <li>Solar plexus, root chakra & identity-layer work</li>
+          <li>Direct application to your pricing, invoicing, asking</li>
+        </ul>
+        <a href="https://exly.live/ad5ZFz" class="cta-btn gold" target="_blank" rel="noopener">
+          Explore the Wealth Blueprint <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <p class="restart"><a href="#" id="restartLink">↺ Retake the audit</a></p>
+  </section>
+
+  <!-- ─────── FOOTER ─────── -->
+  <footer>
+    <div class="footer-brand">Miindtraa · School of Healing & Training</div>
+    <div class="footer-meta">
+      Co-founded by Dr. Amaey A. Parekh & Pankaj S. Nikam<br>
+      Creators of NQH™ — Neurochakra Quantum Healing · IPHM Accredited
+    </div>
+    <p class="footer-disclaimer">
+      This audit is for educational and self-reflection purposes only. It is not a substitute for medical, psychiatric, or financial advice. If you are experiencing serious financial distress or mental health symptoms, please consult a qualified professional.
+    </p>
+    <div class="footer-meta" style="margin-top: 16px;">
+      © Miindtraa Global · All rights reserved
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // ─────────────────────────────────────────────────
+  // QUESTIONS — each option carries weight for one or more of the 5 patterns
+  // Patterns:
+  //   S = Safety Wound (money feels unsafe)
+  //   L = Scarcity Loop (addiction to chase)
+  //   C = Set-Point Ceiling (body's comfort zone)
+  //   P = Solar Plexus Dysregulation (undercharging, guilt receiving)
+  //   T = Unwitnessed Money Story (old story running as identity)
+  // ─────────────────────────────────────────────────
+
+  const QUESTIONS = [
+    {
+      q: "When you imagine your monthly income doubling in the next 6 months, what happens in your body first?",
+      opts: [
+        { t: "My chest tightens or my breath gets shallow — it doesn't feel safe", w: { S: 3, C: 1 } },
+        { t: "Excitement, then immediately a wave of 'but how?'", w: { L: 3 } },
+        { t: "A part of me thinks 'that's not really possible for me'", w: { C: 3, T: 1 } },
+        { t: "I'd feel guilty — like I'd be taking too much", w: { P: 3, T: 1 } }
+      ]
+    },
+    {
+      q: "Growing up, money in your home was mostly associated with…",
+      opts: [
+        { t: "Tension, fights, or fear — it was a stressful topic", w: { S: 3, T: 2 } },
+        { t: "Constant struggle — never quite enough, always chasing", w: { L: 3, T: 1 } },
+        { t: "A ceiling — 'people like us don't earn that kind of money'", w: { C: 3, T: 1 } },
+        { t: "Shame, secrecy, or judgment — having it or asking for it", w: { P: 2, T: 3 } }
+      ]
+    },
+    {
+      q: "When it's time to quote your fee or send an invoice, what's most true?",
+      opts: [
+        { t: "I delay it. I find reasons to wait", w: { P: 3, S: 1 } },
+        { t: "I quote lower than I planned — almost reflexively", w: { P: 3, T: 1 } },
+        { t: "I do it, but I feel a wave of anxiety afterwards", w: { S: 2, P: 2 } },
+        { t: "I'm fine doing it, but I struggle to hold the price if they push back", w: { P: 2, C: 1 } }
+      ]
+    },
+    {
+      q: "Which of these patterns sounds most like you over the last 12 months?",
+      opts: [
+        { t: "I earn well for a while, then something always pulls me back down", w: { C: 3, S: 2 } },
+        { t: "I'm constantly hustling but never feel financially settled", w: { L: 3 } },
+        { t: "I undercharge, overdeliver, and quietly resent it", w: { P: 3 } },
+        { t: "I keep repeating the same story — 'I'm just not good with money'", w: { T: 3 } }
+      ]
+    },
+    {
+      q: "When money comes in unexpectedly — a big payment, a gift, a windfall — what's your first internal reaction?",
+      opts: [
+        { t: "Relief, then a quiet fear that something will go wrong soon", w: { S: 3 } },
+        { t: "Excitement, then an urge to spend or give it away quickly", w: { C: 2, T: 2 } },
+        { t: "Guilt — like I didn't fully deserve it", w: { P: 3, T: 1 } },
+        { t: "Suspicion — 'this won't last'", w: { L: 2, S: 2 } }
+      ]
+    },
+    {
+      q: "Which sentence makes you flinch the most when you read it?",
+      opts: [
+        { t: "\"It's okay for me to have more than enough.\"", w: { S: 3, C: 1 } },
+        { t: "\"I can rest. I don't need to keep chasing.\"", w: { L: 3 } },
+        { t: "\"I'm allowed to receive without having to earn it.\"", w: { P: 3 } },
+        { t: "\"This is not who I have to be forever.\"", w: { T: 3 } }
+      ]
+    },
+    {
+      q: "If you really tried to think about your finances honestly right now, what's your body doing?",
+      opts: [
+        { t: "Bracing — chest tight, shoulders up, holding breath", w: { S: 3, P: 1 } },
+        { t: "Restless — needing to move, distract, refresh something", w: { L: 3 } },
+        { t: "Heavy — like a weight in the stomach or solar plexus area", w: { P: 3 } },
+        { t: "Numb — I just don't want to look. I want to scroll past it", w: { T: 2, S: 2 } }
+      ]
+    },
+    {
+      q: "If a part of you is keeping you stuck financially, what is it most likely trying to do?",
+      opts: [
+        { t: "Keep you safe — because more money has felt dangerous", w: { S: 3 } },
+        { t: "Keep you familiar — because it doesn't trust the new level", w: { C: 3 } },
+        { t: "Keep you good — because asking and receiving feels selfish", w: { P: 3 } },
+        { t: "Keep you loyal to where you came from — to who raised you", w: { T: 3 } }
+      ]
+    }
+  ];
+
+  // ─────────────────────────────────────────────────
+  // PATTERN PROFILES
+  // ─────────────────────────────────────────────────
+
+  const PATTERNS = {
+    S: {
+      key: "S",
+      name: "The Safety Wound",
+      tagline: "Your body learned, somewhere along the way, that money isn't safe.",
+      what: "<p>For your system, <strong>earning more does not feel like progress — it feels like danger.</strong> Somewhere — maybe in childhood, maybe in a financial shock as an adult — your nervous system encoded a message: <em>money is connected to stress, conflict, or loss.</em></p><p>So now your body quietly protects you from it. You delay invoices. You undercharge. You sabotage right at the edge of a breakthrough — not because you're lazy, but because your brain is doing exactly what it learned to do: <strong>keep you near what feels familiar, even when familiar means stuck.</strong></p>",
+      signs: [
+        "Earning more triggers anxiety, not excitement",
+        "You hit a new level, then something 'goes wrong'",
+        "Money conversations make your chest tighten",
+        "You feel calmer when finances are 'just okay' than when they're great"
+      ],
+      whatToDo: "<p><strong>Mindset work alone will not move this.</strong> Affirmations bounce off a nervous system that's bracing for impact.</p><p>What works: <em>regulation before identity.</em> Weekly nervous-system practice that slowly teaches your body that money — and the version of you who holds it — is safe. This is exactly the territory the Tribe sits in, week after week.</p>"
+    },
+    L: {
+      key: "L",
+      name: "The Scarcity Loop",
+      tagline: "Your brain has gotten addicted to the chase itself.",
+      what: "<p>You're not lazy. You're not unmotivated. You're the opposite — <strong>you're always working, always planning, always doing more.</strong> But somehow, the financial settling never quite comes.</p><p>That's because your system is locked in <em>chase mode.</em> Scarcity isn't just a thought for you — it's a state your nervous system has come to recognize as 'normal.' The constant alertness, the hustle, the running-after-relief — your body has wired itself to it. Even when money comes in, the relief doesn't last. The chase resumes.</p><p><strong>You're not addicted to the money. You're addicted to the chase.</strong></p>",
+      signs: [
+        "Always working, never settled — even after wins",
+        "Relief feels temporary — the worry returns within hours",
+        "You can't 'just rest' — it feels unsafe to stop moving",
+        "Your nervous system is more alive in stress than in peace"
+      ],
+      whatToDo: "<p><strong>You can't out-work this pattern.</strong> Working harder is the loop itself.</p><p>What works: <em>down-regulation.</em> Teaching your body that stillness is not the same as scarcity. That rest is not loss. This is slow, weekly work — not a weekend retreat, not a one-time intensive. The Tribe's Wednesday rhythm is built exactly for this.</p>"
+    },
+    C: {
+      key: "C",
+      name: "The Money Set-Point",
+      tagline: "Your body has a comfort zone — and it's quietly running the show.",
+      what: "<p>Here's the strange part — <strong>you've earned good money before.</strong> Maybe you've even crossed the number you said you wanted. But somehow, you keep coming back to the same approximate income level.</p><p>That's not bad luck. That's your <em>money set-point.</em> Your body has decided what amount of money is 'normal for you,' and it will subtly self-correct — through spending, sabotage, missed opportunities, dropped clients — until you're back inside the familiar range.</p><p>And your body will <strong>almost always choose familiar over better.</strong> Until that set-point is updated, no amount of strategy will hold.</p>",
+      signs: [
+        "You earn well, then 'something happens' and you're back down",
+        "Big income jumps feel believable for a moment, then unrealistic",
+        "You've said the same income goal for 2+ years",
+        "Different jobs, different businesses — but the same financial result"
+      ],
+      whatToDo: "<p><strong>This is the deepest pattern in the audit — and the hardest to shift alone.</strong> Mindset can move the conscious belief; it cannot move the somatic set-point.</p><p>What works: <em>identity-level rewiring.</em> Your system has to slowly experience a new normal — and that new normal has to feel safe in the body, not just true in the head. The Tribe holds the weekly state-change; the Wealth Blueprint Intensive does the actual blueprint mapping.</p>"
+    },
+    P: {
+      key: "P",
+      name: "The Solar Plexus Block",
+      tagline: "Your self-worth, your voice, and your money are stored in the same place — and right now it's frozen.",
+      what: "<p>The solar plexus — the area above your navel, below your chest — is where your nervous system holds <strong>self-worth, personal power, and the right to take up space.</strong> When this area is dysregulated, the symptoms are very specific:</p><p>You undercharge. You feel guilty receiving money. You freeze when it's time to name your fee. You overdeliver, then quietly resent it. You can earn well for others — for your boss, for your clients — but the moment it's about <em>you</em> claiming the value, the system shuts down.</p><p>This is <strong>not low confidence.</strong> Low confidence is mental. This is somatic — it's stored in your body, in the very chakra that governs your relationship with your own worth.</p>",
+      signs: [
+        "You undercharge — and you know you do",
+        "Guilt or shrinking when receiving money or compliments",
+        "Freezing when it's time to quote, ask, or hold a price",
+        "Overdelivering as an apology for being paid"
+      ],
+      whatToDo: "<p><strong>This is the most somatic of the five patterns</strong> — which is why talk therapy and mindset coaching can run for years without moving it.</p><p>What works: <em>direct nervous-system + chakra work on the solar plexus itself.</em> The Solar Plexus Money Reset above is a starting practice. The Tribe rotates wealth sessions onto exactly this region. The Wealth Blueprint Intensive does the deeper protocol work.</p>"
+    },
+    T: {
+      key: "T",
+      name: "The Unwitnessed Story",
+      tagline: "Somewhere in you, an old story is still running — and you've started to call it 'who you are.'",
+      what: "<p>Behind almost every chronic money struggle, there is a story. Often, it isn't even yours — it was the story of a parent who was anxious about money. Or a grandparent who worked themselves to exhaustion. Or a moment in your childhood when you learned, very quietly, that <em>asking is dangerous</em> or <em>receiving is selfish</em>.</p><p>That story was never seen. Never named. Never grieved. So it didn't go anywhere — it just kept running. And when a story runs long enough, <strong>it stops feeling like a story and starts feeling like personality.</strong></p><p>You start saying: <em>'This is just how I am. I'm not good with money. I always struggle.'</em> But that is not your truth. That is an old, unwitnessed story still doing its job.</p>",
+      signs: [
+        "\"I'm just not good with money\" feels like an identity statement",
+        "You recognize your money behaviour from a parent or caregiver",
+        "There's a chapter of your life you don't like looking at",
+        "You feel loyal to struggle — successful feels disloyal"
+      ],
+      whatToDo: "<p><strong>You cannot positive-think your way out of an unwitnessed story.</strong> The story has to be seen — gently, in a safe space, by you and ideally with a guide.</p><p>What works: <em>identity-layer healing.</em> NQH™ does this through the Quantum Identity Work layer — looking at the story, witnessing it, completing what wasn't completed, and giving your system permission to write a new one. The Tribe creates the safety; the Wealth Blueprint does the deeper identity work.</p>"
+    }
+  };
+
+  // ─────────────────────────────────────────────────
+  // STATE
+  // ─────────────────────────────────────────────────
+  const state = {
+    current: 0,
+    answers: new Array(QUESTIONS.length).fill(null)
+  };
+
+  const screens = {
+    intro: document.getElementById('intro'),
+    quiz: document.getElementById('quiz'),
+    result: document.getElementById('result')
+  };
+
+  function show(name) {
+    Object.entries(screens).forEach(([k, el]) => {
+      el.classList.toggle('hidden', k !== name);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ─────────────────────────────────────────────────
+  // RENDER QUESTION
+  // ─────────────────────────────────────────────────
+  function renderQuestion() {
+    const i = state.current;
+    const q = QUESTIONS[i];
+    const card = document.getElementById('questionCard');
+
+    card.style.opacity = 0;
+    setTimeout(() => {
+      card.innerHTML = `
+        <div class="q-number">Question ${i + 1}</div>
+        <div class="q-text">${q.q}</div>
+        <div class="options">
+          ${q.opts.map((opt, idx) => `
+            <button class="option ${state.answers[i] === idx ? 'selected' : ''}" data-idx="${idx}">
+              <span class="option-dot"></span>
+              <span>${opt.t}</span>
+            </button>
+          `).join('')}
+        </div>
+      `;
+      card.style.opacity = 1;
+
+      // attach handlers
+      card.querySelectorAll('.option').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt(btn.dataset.idx);
+          state.answers[i] = idx;
+          card.querySelectorAll('.option').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          document.getElementById('nextBtn').disabled = false;
+        });
+      });
+
+      // progress
+      document.getElementById('qNum').textContent = i + 1;
+      const pct = Math.round(((i + 1) / QUESTIONS.length) * 100);
+      document.getElementById('qPct').textContent = pct + '%';
+      document.getElementById('progressFill').style.width = pct + '%';
+
+      // buttons
+      document.getElementById('backBtn').disabled = (i === 0);
+      document.getElementById('nextBtn').disabled = (state.answers[i] === null);
+      document.getElementById('nextBtn').textContent = (i === QUESTIONS.length - 1) ? 'See My Result →' : 'Next →';
+    }, 120);
+  }
+
+  // ─────────────────────────────────────────────────
+  // SCORE + RESULT
+  // ─────────────────────────────────────────────────
+  function computeResult() {
+    const totals = { S: 0, L: 0, C: 0, P: 0, T: 0 };
+    state.answers.forEach((ansIdx, qIdx) => {
+      if (ansIdx === null) return;
+      const weights = QUESTIONS[qIdx].opts[ansIdx].w;
+      Object.entries(weights).forEach(([k, v]) => { totals[k] += v; });
+    });
+    // find dominant pattern
+    let dominantKey = 'S';
+    let dominantScore = -1;
+    Object.entries(totals).forEach(([k, v]) => {
+      if (v > dominantScore) { dominantScore = v; dominantKey = k; }
+    });
+    // also find second-most (for "also active" hint)
+    const sorted = Object.entries(totals).sort((a, b) => b[1] - a[1]);
+    const secondary = sorted[1];
+    return { dominant: PATTERNS[dominantKey], secondary: PATTERNS[secondary[0]], totals };
+  }
+
+  function renderResult() {
+    const { dominant, secondary, totals } = computeResult();
+    const card = document.getElementById('resultCard');
+
+    // Build a tiny bar showing all 5 pattern scores
+    const maxScore = Math.max(...Object.values(totals));
+    const patternBars = Object.entries(totals)
+      .sort((a, b) => b[1] - a[1])
+      .map(([k, v]) => {
+        const p = PATTERNS[k];
+        const w = maxScore > 0 ? (v / maxScore) * 100 : 0;
+        const isDom = k === dominant.key;
+        return `
+          <div style="margin-bottom: 10px;">
+            <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:4px;">
+              <span style="color: ${isDom ? 'var(--indigo)' : 'var(--muted)'}; font-weight: ${isDom ? '600' : '500'};">${p.name}</span>
+              <span style="color: var(--muted); font-variant-numeric: tabular-nums;">${v}</span>
+            </div>
+            <div style="height:5px; background: var(--line); border-radius: 99px; overflow: hidden;">
+              <div style="height:100%; width:${w}%; background: ${isDom ? 'var(--gold)' : 'var(--indigo-soft)'}; opacity: ${isDom ? 1 : 0.4}; border-radius: 99px; transition: width 0.8s ease;"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+    card.innerHTML = `
+      <div class="result-eyebrow">Your Dominant Pattern</div>
+      <h2 class="result-title">${dominant.name}</h2>
+      <p class="result-tagline">${dominant.tagline}</p>
+
+      <div class="result-section">
+        <h4>What This Means</h4>
+        ${dominant.what}
+      </div>
+
+      <div class="result-section">
+        <h4>Signs This Is Live In You</h4>
+        <ul class="pattern-list">
+          ${dominant.signs.map(s => `<li>${s}</li>`).join('')}
+        </ul>
+      </div>
+
+      <div class="result-section">
+        <h4>What Actually Works</h4>
+        ${dominant.whatToDo}
+      </div>
+
+      <div class="result-section">
+        <h4>Your Full Pattern Map</h4>
+        <div style="margin-top: 14px;">${patternBars}</div>
+        <p style="margin-top: 14px; font-size: 13.5px; color: var(--muted); font-style: italic;">Most people have one dominant pattern and one or two secondary ones. <strong style="color:var(--indigo); font-style: normal;">${secondary.name}</strong> is also active in you — worth watching.</p>
+      </div>
+    `;
+  }
+
+  // ─────────────────────────────────────────────────
+  // EVENT WIRING
+  // ─────────────────────────────────────────────────
+  document.getElementById('startBtn').addEventListener('click', () => {
+    show('quiz');
+    renderQuestion();
+  });
+
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    if (state.answers[state.current] === null) return;
+    if (state.current < QUESTIONS.length - 1) {
+      state.current++;
+      renderQuestion();
+    } else {
+      // finish
+      renderResult();
+      show('result');
+    }
+  });
+
+  document.getElementById('backBtn').addEventListener('click', () => {
+    if (state.current > 0) {
+      state.current--;
+      renderQuestion();
+    }
+  });
+
+  document.getElementById('restartLink').addEventListener('click', (e) => {
+    e.preventDefault();
+    state.current = 0;
+    state.answers = new Array(QUESTIONS.length).fill(null);
+    show('intro');
+  });
+</script>
+
+</body>
+</html>
